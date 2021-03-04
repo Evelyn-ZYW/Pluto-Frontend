@@ -15,7 +15,12 @@ const Container = styled.div`
     justify-content: center;
 `;
 
-const TextButton = ({ text, bgcolor, maxwidth, minwidth, maxheight, minheight, radius, bshadow }) => {
+const Img = styled.img`
+    max-width: ${props => props.maxwh ? props.maxwh : ""};
+    min-width: ${props => props.minwh ? props.minwh : ""};
+`;
+
+const Button = ({ text, bgcolor, maxwidth, minwidth, maxheight, minheight, radius, bshadow, src, maxwh, minwh }) => {
 
     return <Container
         bgcolor={bgcolor}
@@ -27,11 +32,12 @@ const TextButton = ({ text, bgcolor, maxwidth, minwidth, maxheight, minheight, r
         bshadow={bshadow}
     >
         {text}
+        <Img src={src} maxwh={maxwh} minwh={minwh} />
     </Container>
 }
 
-TextButton.defaultProps = {
+Button.defaultProps = {
     text: "LOGIN"
 }
 
-export default TextButton;
+export default Button;
