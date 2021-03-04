@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Close from './icons/close.png';
-import Home from './icons/home.png';
-import ArrowLeft from './icons/left_arrow.png';
-import ArrowRight from './icons/right_arrow.png';
-import Puppy from './icons/puppy.png';
-import New from './icons/new.png';
+//below are the imported icons
+import Close from 'assets/close.png';
+import Home from 'assets/home.png';
+import ArrowRight from 'assets/right_arrow.png';
 
 const Container = styled.div`
     max-width: 300px;
