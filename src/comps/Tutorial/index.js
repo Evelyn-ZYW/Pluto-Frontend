@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Button from 'comps/Button';
+import ImgButton from 'comps/ImgButton';
+
 //below are the imported icons
 import Close from 'assets/close.png';
 import Home from 'assets/home.png';
@@ -18,19 +21,15 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: space-between;
     padding: 30px;
-    // align-items: center;
 `;
 
-const Icon = styled.img`
-    max-wdith: 20px;
-    max-height: 20px; 
-`;
 const Top = styled.div`
     max-wdith: 80%;
     min-wdith: 80%;
+    max-height: 10%;
+    min-height: 39px;
     display: flex;
     justify-content: flex-end;
-    // border: 1px solid red;
 `;
 const Middle = styled.div`
     display: flex;
@@ -38,28 +37,33 @@ const Middle = styled.div`
     align-items: center;
     justify-content: center;
     text-align: center;
-    // border: 1px solid red;
 `;
 const Bottom = styled.div`
     max-wdith: 228px;
     min-wdith: 228px;
     display: flex;
     justify-content: space-between;
-    // border: 1px solid red;
 `;
-const Tutorial = ({ text, icon1, icon2, icon3, icon4 }) => {
+const Tutorial = ({ content, icon1, icon2, icon3, icon4, text, bgcolor, minwidth, radius, bshadow,}) => {
 
     return <Container>
         <Top>
-            <Icon src={icon1} />
+            <ImgButton src={icon1} alt="" />
         </Top>
         <Middle>
             <img src={icon2} />
-            <p style={{ width: "230px" }}>{text}</p>
+            <p style={{ width: "230px" }}>{content}</p>
         </Middle>
         <Bottom>
-            <Icon src={icon3} />
-            <Icon src={icon4} />
+            <ImgButton src={icon3} alt="" />
+            <Button
+                text={text}
+                src={icon4}
+                bgcolor={bgcolor}
+                minwidth={minwidth}
+                radius={radius}
+                bshadow={bshadow}
+            />
         </Bottom>
     </Container>
 }
@@ -69,7 +73,7 @@ Tutorial.defaultProps = {
     icon2: Home,
     icon3: null,
     icon4: ArrowRight,
-    text: "This is the homepage button. Here you will find all the posts."
+    content: "This is the homepage button. Here you will find all the posts."
 }
 
 export default Tutorial;

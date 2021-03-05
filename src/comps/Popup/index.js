@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Lottie from 'react-lottie';
 import animData from './animate/complete1.json';
 
+import Button from 'comps/Button';
+
 const Container = styled.div`
     max-width: 300px;
     min-width: 300px;
@@ -16,14 +18,6 @@ const Container = styled.div`
     align-items: center;
 `;
 
-const Button = styled.div`
-    background-color:#DCD8F1;
-    width: 205px;
-    height: 52px;
-    border-radius: 40px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    text-align: center;
-`;
 const Popup = () => {
 
     const dO = {
@@ -45,7 +39,11 @@ const Popup = () => {
             <h4>Awesome!</h4>
             <p>You're ready to use pluto.</p>
         </div>
-        <Button><h4>GET STARTED</h4></Button>
+        <Button
+            text="GET STARTED"
+            minwidth={"205px"}
+            minheight={"52px"}
+        />
     </Container>
 }
 

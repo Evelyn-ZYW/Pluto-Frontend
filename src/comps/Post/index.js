@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ImgButton from 'comps/ImgButton';
+
 //below are the imported icons
 import More from 'assets/more.png';
 import Treat from 'assets/treat.png';
@@ -14,19 +16,17 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 `;
 
-const Icon = styled.img`
-    max-wdith: 50px;
-    max-height: 50px; 
-`;
-const Image = styled.img`
-    max-width: 100%;
-`;
 const Top = styled.div`
+    max-width: 90%;
+    min-width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
+
     & > div{
         display:flex;
         align-items: center;
@@ -36,21 +36,35 @@ const Middle = styled.div`
 
 `;
 const Bottom = styled.div`
-
+    max-width: 90%;
+    min-width: 90%;
     & > div {
         display: flex;
         align-items: center;
     }
 `;
+
+const Icon = styled.img`
+    max-wdith: 50px;
+    max-height: 50px; 
+`;
+const Image = styled.img`
+    max-width: 100%;
+`;
+
 const Post = ({ un, caption, number }) => {
 
     return <Container>
         <Top>
             <div>
                 <Icon src={Ava1} />
-                <span>{un}</span>
+                <span style={{ paddingLeft: "10px" }}>{un}</span>
             </div>
-            <img src={More} style={{ maxWidth: "35px", maxHeight: "35px", padding: "10px" }} />
+            <ImgButton
+                src={More}
+                maxht="35px"
+                minht="35px"
+            />
         </Top>
         <Middle>
             <Image src={Cute} />
@@ -58,11 +72,11 @@ const Post = ({ un, caption, number }) => {
         <Bottom>
             <div>
                 <Icon src={Treat} />
-                <span>#{number}</span>
+                <span style={{ paddingLeft: "10px" }}>#{number}</span>
             </div>
             <div>
                 <span>{un}</span>
-                <span>{caption}</span>
+                <span style={{ paddingLeft: "10px" }}>{caption}</span>
             </div>
         </Bottom>
     </Container>
