@@ -5,14 +5,17 @@ const Container = styled.div`
     display: flex;
     background-color: ${props => props.bgcolor ? props.bgcolor : "#DCD8F1"};
     color: ${props => props.color ? props.color : ""};
-    max-width: ${props => props.maxwidth ? props.maxwidth : "205px"};
-    min-width: ${props => props.minwidth ? props.minwidth : "205px"};
-    max-height: ${props => props.maxheight ? props.maxheight : "52px"};
-    min-height: ${props => props.minheight ? props.minheight : "52px"};
+    max-width: ${props => props.maxwidth ? props.maxwidth : ""};
+    min-width: ${props => props.minwidth ? props.minwidth : ""};
+    max-height: ${props => props.maxheight ? props.maxheight : ""};
+    min-height: ${props => props.minheight ? props.minheight : ""};
     border-radius: ${props => props.radius ? props.radius : "40px"};
     box-shadow: ${props => props.bshadow ? props.bshadow : "0px 4px 4px rgba(0, 0, 0, 0.45);"};
     align-items: center;
     justify-content: center;
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 const Img = styled.img`
@@ -37,7 +40,7 @@ const Button = ({ text, bgcolor, maxwidth, minwidth, maxheight, minheight, radiu
 }
 
 Button.defaultProps = {
-    text: "LOGIN"
+
 }
 
 export default Button;

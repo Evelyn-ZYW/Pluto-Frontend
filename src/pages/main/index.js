@@ -8,7 +8,8 @@ import Tutorial from 'comps/Tutorial';
 const Main = () => {
 
     return <div className="main">
-        <Post />
+        {/* <Post /> */}
+        <Tutorial />
     </div>
 }
 export default Main;
