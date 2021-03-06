@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Button from 'comps/Button';
@@ -39,6 +39,8 @@ const Buttons = styled.div`
 `;
 
 const DeletePopup = ({ title, content, option1, option2 }) => {
+    const [select, setSelect] = useState(null);
+
     return <Container>
         <Text>
             <h3>{title}</h3>
@@ -52,7 +54,9 @@ const DeletePopup = ({ title, content, option1, option2 }) => {
                 radius={"0 0 0 8px"}
                 bshadow={"none"}
                 borderR={"1px solid black"}
-                bgcolor={"#F1E8E1"}
+                bgcolor={select === 1 ? "#B6AEA7" : "#F1E8E1"}
+                select={1}
+                onClick={() => setSelect(1)}
             />
             <Button
                 text={option2}
@@ -60,8 +64,10 @@ const DeletePopup = ({ title, content, option1, option2 }) => {
                 minheight={"50px"}
                 radius={"0 0 8px 0"}
                 bshadow={"none"}
-                bgcolor={"#F1E8E1"}
+                bgcolor={select === 2 ? "#B6AEA7" : "#F1E8E1"}
                 color={"#FF0000"}
+                select={2}
+                onClick={() => setSelect(2)}
             />
         </Buttons>
     </Container>

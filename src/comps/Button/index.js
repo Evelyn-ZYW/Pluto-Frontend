@@ -24,7 +24,7 @@ const Img = styled.img`
     min-width: ${props => props.minwh ? props.minwh : ""};
 `;
 
-const Button = ({ text, color, bgcolor, maxwidth, minwidth, maxheight, minheight, radius, bshadow, src, maxwh, minwh, borderR }) => {
+const Button = ({ text, color, bgcolor, maxwidth, minwidth, maxheight, minheight, radius, bshadow, src, maxwh, minwh, borderR, onClick }) => {
 
     return <Container
         color={color}
@@ -36,6 +36,7 @@ const Button = ({ text, color, bgcolor, maxwidth, minwidth, maxheight, minheight
         radius={radius}
         bshadow={bshadow}
         borderR={borderR}
+        onClick={onClick}
     >
         {text}
         <Img src={src} maxwh={maxwh} minwh={minwh} />
