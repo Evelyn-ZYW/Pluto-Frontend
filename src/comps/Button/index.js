@@ -11,6 +11,7 @@ const Container = styled.div`
     min-height: ${props => props.minheight ? props.minheight : ""};
     border-radius: ${props => props.radius ? props.radius : "40px"};
     box-shadow: ${props => props.bshadow ? props.bshadow : "0px 4px 4px rgba(0, 0, 0, 0.45);"};
+    border-right: ${props=>props.borderR ? props.borderR : ""};
     align-items: center;
     justify-content: center;
     &:hover {
@@ -23,7 +24,7 @@ const Img = styled.img`
     min-width: ${props => props.minwh ? props.minwh : ""};
 `;
 
-const Button = ({ text, color, bgcolor, maxwidth, minwidth, maxheight, minheight, radius, bshadow, src, maxwh, minwh }) => {
+const Button = ({ text, color, bgcolor, maxwidth, minwidth, maxheight, minheight, radius, bshadow, src, maxwh, minwh, borderR }) => {
 
     return <Container
         color={color}
@@ -34,6 +35,7 @@ const Button = ({ text, color, bgcolor, maxwidth, minwidth, maxheight, minheight
         minheight={minheight}
         radius={radius}
         bshadow={bshadow}
+        borderR={borderR}
     >
         {text}
         <Img src={src} maxwh={maxwh} minwh={minwh} />
