@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-import Popup from 'comps/Popup';
-import Button from 'comps/Button';
-import Post from 'comps/Post';
-import Tutorial from 'comps/Tutorial';
+import DeletePopup from 'comps/DeletePopup';
 
 const Main = () => {
 
     return <div className="main">
-        {/* <Post /> */}
-        <Tutorial />
+        <DeletePopup />
     </div>
 }
 export default Main;

@@ -54,7 +54,7 @@ export const Tutorial3 = () => <Tutorial
     minwidth={"82px"}
     content={"Click this button to view your profile. Here you will find all your posts. You can also change your settings here."}
 />;
-export const ButtonWithShadow = () => <Button 
+export const ButtonWithShadow = () => <Button
     maxwidth={"205px"}
     minheight={"52px"}
     text="LOGIN"
@@ -71,9 +71,9 @@ export const ButtonWithImage = () => <ImgButton
 />;
 export const MyPost = () => <Post />;
 
-export const MyInput = () => <Input 
-minwidth={"345px"}
-minheight={"50px"}
+export const MyInput = () => <Input
+    minwidth={"345px"}
+    minheight={"50px"}
 />;
 
 
@@ -81,10 +81,16 @@ export const MyNavigation = () => <Navigtion />;
 
 export const MyProfile = () => <Profile />;
 
-export const ThreedotsMenu = () => <ThreeMenu 
-minwidth={"297px"}
-minheight={"69px"}/>;
+export const ThreedotsMenu = () => <ThreeMenu
+    minwidth={"297px"}
+    minheight={"69px"}
+/>;
 
+export const MyDeletePopup = () => <DeletePopup />;
 
-
-export const MyDeletePopup= () => <DeletePopup />;
+export const MyLogoutPopup = () => <DeletePopup
+    title={"Log out of Pluto?"}
+    content={null}
+    option1={"CANCEL"}
+    option2={"LOGOUT"}
+/>;
