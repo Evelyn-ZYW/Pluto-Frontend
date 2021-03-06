@@ -4,6 +4,12 @@ import Tutorial from '../comps/Tutorial';
 import Button from '../comps/Button';
 import ImgButton from '../comps/ImgButton';
 import Post from '../comps/Post';
+import Input from '../comps/Input';
+import Navigtion from '../comps/Navigation';
+import Profile from '../comps/Profile';
+import ThreeMenu from '../comps/ThreeMenu';
+import DeletePopup from 'comps/DeletePopup';
+
 
 //below are the imported icons
 import Close from '../assets/close.png';
@@ -11,6 +17,7 @@ import ArrowLeft from '../assets/left_arrow.png';
 import ArrowRight from '../assets/right_arrow.png';
 import Puppy from '../assets/puppy.png';
 import New from '../assets/new.png';
+
 
 export default {
     title: 'Components',
@@ -63,3 +70,21 @@ export const ButtonWithImage = () => <ImgButton
     src={ArrowLeft}
 />;
 export const MyPost = () => <Post />;
+
+export const MyInput = () => <Input 
+minwidth={"345px"}
+minheight={"50px"}
+/>;
+
+
+export const MyNavigation = () => <Navigtion />;
+
+export const MyProfile = () => <Profile />;
+
+export const ThreedotsMenu = () => <ThreeMenu 
+minwidth={"297px"}
+minheight={"69px"}/>;
+
+
+
+export const MyDeletePopup= () => <DeletePopup />;
