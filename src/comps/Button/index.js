@@ -5,6 +5,7 @@ const Container = styled.div`
     display: flex;
     background-color: ${props => props.bgcolor ? props.bgcolor : "#DCD8F1"};
     color: ${props => props.color ? props.color : "#000000"};
+    padding: ${props => props.padding ? props.padding : "10px"};
     max-width: ${props => props.maxwidth ? props.maxwidth : ""};
     min-width: ${props => props.minwidth ? props.minwidth : ""};
     max-height: ${props => props.maxheight ? props.maxheight : ""};
@@ -12,6 +13,9 @@ const Container = styled.div`
     border-radius: ${props => props.radius ? props.radius : "40px"};
     box-shadow: ${props => props.bshadow ? props.bshadow : "0px 4px 4px rgba(0, 0, 0, 0.45);"};
     border-right: ${props=>props.borderR ? props.borderR : ""};
+    font-size: ${props=>props.fontSize ? props.fontSize : "20px"};
+    font-family: ${props=>props.fontFamily ? props.fontFamily : "'Poppins', sans-serif"};
+    font-weight: ${props=>props.fontWeight ? props.fontWeight : "600"};
     align-items: center;
     justify-content: center;
     &:hover {
@@ -24,11 +28,14 @@ const Img = styled.img`
     min-width: ${props => props.minwh ? props.minwh : ""};
 `;
 
-const Button = ({ text, color, bgcolor, maxwidth, minwidth, maxheight, minheight, radius, bshadow, src, maxwh, minwh, borderR, onClick }) => {
+const Button = ({ text, color, bgcolor, maxwidth, minwidth, maxheight, minheight, radius, bshadow,
+     src, maxwh, minwh, 
+     borderR, onClick, padding, fontWeight, fontSize, fontFamily }) => {
 
     return <Container
         color={color}
         bgcolor={bgcolor}
+        padding={padding}
         maxwidth={maxwidth}
         minwidth={minwidth}
         maxheight={maxheight}
@@ -37,6 +44,9 @@ const Button = ({ text, color, bgcolor, maxwidth, minwidth, maxheight, minheight
         bshadow={bshadow}
         borderR={borderR}
         onClick={onClick}
+        fontFamily={fontFamily}
+        fontSize={fontSize}
+        fontWeight={fontWeight}
     >
         {text}
         <Img src={src} maxwh={maxwh} minwh={minwh} />

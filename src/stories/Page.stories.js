@@ -1,21 +1,16 @@
+import LoginPage from '../pages/Login';
 import React from 'react';
-
-import { Page } from './Page';
-import * as HeaderStories from './Header.stories';
+import FirstScreen from '../pages/FirstScreen';
+import RegisterPage from '../pages/Register';
 
 export default {
-  title: 'Example/Page',
-  component: Page,
+  title: 'Pages',
+  component: FirstScreen,
+  component: RegisterPage,
+  component: LoginPage
 };
 
-const Template = (args) => <Page {...args} />;
 
-export const LoggedIn = Template.bind({});
-LoggedIn.args = {
-  ...HeaderStories.LoggedIn.args,
-};
-
-export const LoggedOut = Template.bind({});
-LoggedOut.args = {
-  ...HeaderStories.LoggedOut.args,
-};
+export const MyFirstScreen = () => <FirstScreen />;
+export const MyRegisterPage = () => <RegisterPage />;
+export const MyLoginPage = () => <LoginPage />;
