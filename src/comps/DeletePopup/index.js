@@ -49,8 +49,8 @@ const DeletePopup = ({ title, content, option1, option2 }) => {
         <Buttons>
             <Button
                 text={option1}
-                minwidth={"179.5px"}
-                minheight={"50px"}
+                minwidth={"159.5px"}
+                minheight={"40px"}
                 radius={"0 0 0 8px"}
                 bshadow={"none"}
                 borderR={"1px solid black"}
@@ -60,8 +60,8 @@ const DeletePopup = ({ title, content, option1, option2 }) => {
             />
             <Button
                 text={option2}
-                minwidth={"179.5px"}
-                minheight={"50px"}
+                minwidth={"159.5px"}
+                minheight={"40px"}
                 radius={"0 0 8px 0"}
                 bshadow={"none"}
                 bgcolor={select === 2 ? "#B6AEA7" : "#F1E8E1"}
