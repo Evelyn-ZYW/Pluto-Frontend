@@ -18,6 +18,9 @@ min-width: ${props => props.minwidth ? props.minwidth : ""};
 max-height: ${props => props.maxheight ? props.maxheight : ""};
 min-height: ${props => props.minheight ? props.minheight : ""};
 margin-top: ${props=>props.margin ? props.margin : 0};
+font-size: ${props=>props.fontSize ? props.fontSize : "12px"};
+font-family: ${props=>props.fontFamily ? props.fontFamily : "'Poppins', sans-serif"};
+font-weight: ${props=>props.fontWeight ? props.fontWeight : "300"};
 padding-left:12px;
 outline: none;
 
@@ -26,13 +29,16 @@ outline: none;
 
 
 
-const InputElements = ({placeholder, type, margin, onChange, maxwidth, minwidth, maxheight, minheight}) => {
+const InputElements = ({placeholder, type, margin, onChange, maxwidth, minwidth, maxheight, minheight, fontSize, fontFamily, fontWeight}) => {
     return <Container>
            <Input type={type} placeholder={placeholder} margin={margin} onChange={onChange} 
            maxwidth={maxwidth}
            minwidth={minwidth}
            maxheight={maxheight}
            minheight={minheight}
+           fontFamily={fontFamily}
+           fontSize={fontSize}
+           fontWeight={fontWeight}
            ></Input>
     </Container>
 }

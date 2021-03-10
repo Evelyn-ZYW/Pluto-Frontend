@@ -16,6 +16,18 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
+    h4 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 21px;
+    }
+
+    p {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300;
+        font-size: 18px;
+    }
 `;
 
 const Popup = () => {
