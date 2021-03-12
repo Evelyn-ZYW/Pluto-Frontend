@@ -11,7 +11,7 @@ const Img = styled.img`
     }
 `;
 
-const ImgButton = ({ src, maxwh, minwh, maxht, minht }) => {
+const ImgButton = ({ src, maxwh, minwh, maxht, minht, onClick }) => {
 
     return <Img
         src={src}
@@ -19,11 +19,13 @@ const ImgButton = ({ src, maxwh, minwh, maxht, minht }) => {
         minwh={minwh}
         maxht={maxht}
         minht={minht}
+        onClick={onClick}
     />
 }
 
 ImgButton.defaultProps = {
-    src: "assets/close.png"
+    src: "assets/close.png",
+    onClick:()=>{}
 }
 
 export default ImgButton;

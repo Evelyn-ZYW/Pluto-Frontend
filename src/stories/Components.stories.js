@@ -9,6 +9,7 @@ import Navigtion from '../comps/Navigation';
 import Profile from '../comps/Profile';
 import ThreeMenu from '../comps/ThreeMenu';
 import DeletePopup from 'comps/DeletePopup';
+import Upload from 'comps/Upload';
 
 
 //below are the imported icons
@@ -17,15 +18,16 @@ import ArrowLeft from '../assets/left_arrow.png';
 import ArrowRight from '../assets/right_arrow.png';
 import Puppy from '../assets/puppy.png';
 import New from '../assets/new.png';
+import Avatar from '../assets/a1.png';
 
 
 export default {
     title: 'Components',
-    component: Popup,
-    component: Tutorial,
-    component: Button,
-    component: ImgButton,
-    component: Post,
+    // component: Popup,
+    // component: Tutorial,
+    // component: Button,
+    // component: ImgButton,
+    // component: Post,
 };
 
 export const MyPopup = () => <Popup />;
@@ -79,7 +81,7 @@ export const MyInput = () => <Input
 
 export const MyNavigation = () => <Navigtion />;
 
-export const MyProfile = () => <Profile />;
+export const MyProfile = () => <Profile src={Avatar} />;
 
 export const ThreedotsMenu = () => <ThreeMenu
     minwidth={"297px"}
@@ -94,3 +96,5 @@ export const MyLogoutPopup = () => <DeletePopup
     option1={"CANCEL"}
     option2={"LOGOUT"}
 />;
+
+export const MyUpload = () => <Upload />;

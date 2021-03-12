@@ -1,66 +1,53 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import photo from 'assets/cute.jpeg';
-
-
 const Container = styled.div`
     display: flex;
-    justify-content: center;
-    width: 100%;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 30px;
     max-width: ${props => props.maxwidth ? props.maxwidth : "297px"};
     min-width: ${props => props.minwidth ? props.minwidth : "297px"};
-    max-height: ${props => props.maxheight ? props.maxheight : "69px"};
-    min-height: ${props => props.minheight ? props.minheight : "69px"};
-
+    max-height: ${props => props.maxheight ? props.maxheight : "252px"};
+    min-height: ${props => props.minheight ? props.minheight : "252px"};
 `;
 
-const Pic = styled.div`
-
-    max-width: 165px;
-    max-height: auto;
-    margin: 0px 130px 0px 130px;
-`;
-
-const PFP =styled.img`
+const Img = styled.img`
     border-radius: 50%;
-    height: 100%;
-    width: 100%;
+    max-width: ${props => props.maxwh ? props.maxwh : ""};
+    min-width: ${props => props.minwh ? props.minwh : ""};
+    max-height: ${props => props.maxht ? props.maxht : ""};
+    min-height: ${props => props.minht ? props.minht : ""};
 `;
 
-const Name = styled.h1`
+const Name = styled.h3`
     margin: 10px 0;
     text-transform: lowercase;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
 `;
 
 const Bio = styled.p`
-
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 21px;
 `;
-const Profile = ({username, bio}) =>{
+const Profile = ({ username, bio, src }) => {
 
-    return  <Container>
-            
-            <Pic> <PFP src={photo} /> </Pic>
-             <Name>{username}</Name>
-             <Bio>{bio}</Bio>
+    return <Container>
+
+        <Img src={src} />
+        <Name>{username}</Name>
+        <Bio>{bio}</Bio>
 
     </Container>
-   
+}
 
-
-
-
-   }
-
-   Profile.defaultProps = {
-      username:'Username',
-      bio:'hello,'
-      
-   }
-   
-   
-
+Profile.defaultProps = {
+    username: 'Username',
+    bio: 'hello,',
+    src: "assets/a1.png"
+}
 
 export default Profile;
