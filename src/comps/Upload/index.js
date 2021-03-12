@@ -22,35 +22,20 @@ const Container = styled.form`
     }
 `;
 const Icon = styled.img`
-width: 49px;
-height: 49px;
+    width: 49px;
+    height: 49px;
+    display: ${props => props.display ? props.display : "block"};
 `;
 
-
-const Upload = () => {
-    const [upload, setUpload] = useState();
-    const [image, setImage] = useState({ preview: '', raw: '' });
-
-    const HandleUpload = (e) => {
-        setUpload(true);
-        setImage({
-            preview: URL.createObjectURL(e.target.files[0]),
-            raw: e.target.files[0]
-        })
-    }
+const Upload = ({ onChange, url, display }) => {
 
     return <Container>
 
-        {upload === true ? <img src={image.preview} /> : <label for="file-input" style={{ position: "absolute" }}>
-            <Icon src={AddPhoto} style={{ maxWidth: "49px", maxHeight: "49px", cursor: "pointer" }} />
-        </label>}
-        <input id="file-input" type="file" onChange={HandleUpload} style={{ display: 'none' }} />
-
-        {/* <img src={url} />
+        <img src={url} />
         <label for="file-input" style={{ position: "absolute" }}>
-            <Icon src={AddPhoto} style={{ maxWidth: "49px", maxHeight: "49px", cursor: "pointer" }} />
+            <Icon src={AddPhoto} style={{ cursor: "pointer" }} display={display}/>
         </label>
-        <input id="file-input" type="file" onChange={onChange} style={{ display: 'none' }} /> */}
+        <input id="file-input" type="file" onChange={onChange} style={{ display: 'none' }} />
 
     </Container>
 }

@@ -27,14 +27,12 @@ const Top = styled.div`
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 21px;
-
     #center {
-    position: absolute;
-    left: 35%;
+        position: absolute;
+        left: 35%;
     }
-
     #post {
-    color: #9DCFF6;
+        color: #9DCFF6;
     }
 `;
 const Middle = styled.div`
@@ -53,22 +51,26 @@ const Bottom = styled.div`
 
 `;
 
-
-
 const AddPost = () => {
     const [upload, setUpload] = useState();
+    const [image, setImage] = useState({ preview: '', raw: '' });
 
-    // useEffect(()=>{
-    //     console.log(upload)
-    // },[])
+    const HandleUpload = (e) => {
+        setUpload(true);
+        setImage({
+            preview: URL.createObjectURL(e.target.files[0]),
+            raw: e.target.files[0]
+        })
+    }
+
     return <Container>
         <Top>
             <ImgButton src={Close} maxwh="27px" maxht="27px" />
             <h3 id="center">NEW POST</h3>
-            {upload ? <h3 className="sub">POST</h3> : <h3 id="post"></h3>}
+            {upload ? <h3 id="post">POST</h3> : <h3></h3>}
         </Top>
         <Middle>
-            <Upload />
+            {upload ? <Upload onChange={HandleUpload} url={image.preview} display={"none"} /> : <Upload onChange={HandleUpload} url={image.preview} />}
         </Middle>
         <Bottom>
             <Input
