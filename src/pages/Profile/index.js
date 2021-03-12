@@ -5,6 +5,8 @@ import Profile from '../../comps/Profile';
 import Navigation from '../../comps/Navigation';
 import More from '../../assets/more.png';
 import Avatar from '../../assets/a1.png';
+import Cute1 from '../../assets/pomer.jpg';
+import Cute2 from '../../assets/cute.jpeg';
 
 const Container = styled.div`
 border: 1px solid black;
@@ -39,6 +41,11 @@ const Bottom = styled.div`
         background-color: #C4C4C4;
         width: 136px;
         height: 136px;
+        & > img {
+            width: 136px;
+            height: 136px;
+            object-fit: cover;
+        }
     }
 `;
 
@@ -55,8 +62,8 @@ const ProfilePage = () => {
             <Profile src={Avatar} />
         </Middle>
         <Bottom className="bottom">
-            <div></div>
-            <div></div>
+            <div><img src={Cute1}/></div>
+            <div><img src={Cute2}/></div>
             <div></div>
             <div></div>
             <div></div>

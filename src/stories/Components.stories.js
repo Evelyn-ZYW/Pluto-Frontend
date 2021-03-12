@@ -9,6 +9,7 @@ import Navigtion from '../comps/Navigation';
 import Profile from '../comps/Profile';
 import ThreeMenu from '../comps/ThreeMenu';
 import DeletePopup from 'comps/DeletePopup';
+import Upload from 'comps/Upload';
 
 
 //below are the imported icons
@@ -95,3 +96,5 @@ export const MyLogoutPopup = () => <DeletePopup
     option1={"CANCEL"}
     option2={"LOGOUT"}
 />;
+
+export const MyUpload = () => <Upload />;
