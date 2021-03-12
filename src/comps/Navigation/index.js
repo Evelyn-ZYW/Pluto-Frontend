@@ -17,6 +17,7 @@ const Container = styled.div`
     min-width: ${props => props.minwidth ? props.minwidth : "414px"};
     max-height: ${props => props.maxheight ? props.maxheight : "60px"};
     min-height: ${props => props.minheight ? props.minheight : "60px"};
+
 `;
 
 const Home = styled.img`
