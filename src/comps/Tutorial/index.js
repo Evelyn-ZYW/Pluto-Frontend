@@ -8,6 +8,7 @@ import ImgButton from 'comps/ImgButton';
 import Close from 'assets/close.png';
 import Home from 'assets/home.png';
 import ArrowRight from 'assets/right_arrow.png';
+import { Tutorial2 } from 'stories/Components.stories';
 
 const Container = styled.div`
     max-width: 300px;
@@ -44,7 +45,7 @@ const Bottom = styled.div`
     display: flex;
     justify-content: space-between;
 `;
-const Tutorial = ({ content, icon1, icon2, icon3, icon4, text, bgcolor, minwidth, radius, bshadow,}) => {
+const Tutorial = ({ content, icon1, icon2, icon3, icon4, text, bgcolor, minwidth, radius, bshadow,onClick}) => {
 
     return <Container>
         <Top>
@@ -56,7 +57,8 @@ const Tutorial = ({ content, icon1, icon2, icon3, icon4, text, bgcolor, minwidth
         </Middle>
         <Bottom>
             <ImgButton src={icon3} alt="" />
-            <Button
+            <Button 
+                onClick={onClick}
                 text={text}
                 src={icon4}
                 bgcolor={bgcolor}
@@ -73,7 +75,8 @@ Tutorial.defaultProps = {
     icon2: Home,
     icon3: null,
     icon4: ArrowRight,
-    content: "This is the homepage button. Here you will find all the posts."
+    content: "This is the homepage button. Here you will find all the posts.",
+    onClick:()=>{}
 }
 
 export default Tutorial;

@@ -6,6 +6,7 @@ const Img = styled.img`
     min-width: ${props => props.minwh ? props.minwh : ""};
     max-height: ${props => props.maxht ? props.maxht : ""};
     min-height: ${props => props.minht ? props.minht : ""};
+    padding: 0 10px;
     &:hover {
         cursor: pointer;
     }
