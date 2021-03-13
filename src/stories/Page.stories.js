@@ -8,6 +8,7 @@ import TutorialPage from '../pages/Tutorial';
 
 //below are the imported icons
 import Avatar from '../assets/a1.png';
+import PostPage from '../pages/Post';
 export default {
   title: 'Pages',
   component: FirstScreen,
@@ -23,3 +24,4 @@ export const MyLoginPage = () => <LoginPage />;
 export const MyProfilePage = () => <ProfilePage src={Avatar}/>;
 export const MyAddPostPage = () => <AddPostPage />;
 export const MyTutorialPage = () => <TutorialPage/>;
+export const MyPostPage = () => <PostPage />;
