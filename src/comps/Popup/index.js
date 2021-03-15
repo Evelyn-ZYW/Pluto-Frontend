@@ -30,7 +30,7 @@ const Container = styled.div`
     }
 `;
 
-const Popup = () => {
+const Popup = ({onClick}) => {
 
     const dO = {
         loop: false,
@@ -55,6 +55,7 @@ const Popup = () => {
             text="GET STARTED"
             minwidth={"205px"}
             minheight={"52px"}
+            onClick={onClick}
         />
     </Container>
 }
