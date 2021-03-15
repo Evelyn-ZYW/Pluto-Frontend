@@ -5,6 +5,7 @@ import Button from '../../comps/Button';
 import InputElements from '../../comps/Input';
 import ArrowLeft from '../../assets/left_arrow.png';
 import PopUp from '../../comps/Popup';
+import axios from 'axios';
 
 const Container = styled.div`
 border: 1px solid black;
@@ -39,6 +40,15 @@ align-items: center;
 
 .close.open {
     display: block;
+}
+
+#error {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 21px;
+    color: red;
+    margin-left: 50px;
+    width: 100%;
 }
 `;
 const BackCont = styled.div`
@@ -80,6 +90,24 @@ const RegisterPage = () => {
     const [open, setOpen] = useState(true);
     const [close, setClose] = useState(false);
 
+    const [pass, setPass] = useState("");
+    const [passconfirm, setPassconfirm] = useState("");
+    const [email, setEmail] = useState("");
+    const [error, setError] = useState(null);
+
+    const clickNext = async() => {
+        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if(pass !== passconfirm){
+            setError("Passwords do not match")
+        } else if (!email.match(mailformat)){
+            setError("email format is invalid")
+        } else {
+            setOpen(!open);
+            setClose(!close);
+        }
+    }
+
 
     return <Container>
         <BackCont>
@@ -91,13 +119,15 @@ const RegisterPage = () => {
         <InputCont>
             <InputElements fontSize="15px" minwidth="345px" minheight="50px" placeholder="name" />
             <InputElements fontSize="15px" minwidth="345px" minheight="50px"  placeholder="username" />
-            <InputElements fontSize="15px" minwidth="345px" minheight="50px"  placeholder="email"/>
-            <InputElements fontSize="15px" minwidth="345px" minheight="50px"  placeholder="password" type="password"/>
-            <InputElements fontSize="15px" minwidth="345px" minheight="50px"  placeholder="confirm password" type="password" />
+            <InputElements onChange={(e)=>setEmail(e.target.value)}  fontSize="15px" minwidth="345px" minheight="50px"  placeholder="email"/>
+            <InputElements onChange={(e)=>setPass(e.target.value)} fontSize="15px" minwidth="345px" minheight="50px"  placeholder="password" type="password"/>
+            <InputElements onChange={(e)=>setPassconfirm(e.target.value)} fontSize="15px" minwidth="345px" minheight="50px"  placeholder="confirm password" type="password" />
+            <div id="error">
+                            {error}
+            </div>
         </InputCont> 
         <ButtonCont onClick={() => {
-                   setOpen(!open);
-                   setClose(!close);
+                   clickNext();
               }} >
              <Button  text="NEXT" maxheight="50px" minwidth="345px" bgcolor="#DCD8F1" radius="40px" border="none" />
         </ButtonCont>
