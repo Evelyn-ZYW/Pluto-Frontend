@@ -6,6 +6,7 @@ import InputElements from '../../comps/Input';
 import ArrowLeft from '../../assets/left_arrow.png';
 import PopUp from '../../comps/Popup';
 import axios from 'axios';
+import {useHistory} from 'react-router-dom';
 
 const Container = styled.div`
 border: 1px solid black;
@@ -82,17 +83,22 @@ justify-content: center;
 position: absolute;
 top: 0;
 left: 0;
-margin: 17.5px;
+
 `;
 
 const RegisterPage = () => {
 
+    const history = useHistory();
+
     const [open, setOpen] = useState(true);
     const [close, setClose] = useState(false);
-
+    
+    const [name, setName] = useState("");
+    const [un, setUn] = useState("");
+    const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const [passconfirm, setPassconfirm] = useState("");
-    const [email, setEmail] = useState("");
+    
     const [error, setError] = useState(null);
 
     const clickNext = async() => {
@@ -103,22 +109,35 @@ const RegisterPage = () => {
         } else if (!email.match(mailformat)){
             setError("email format is invalid")
         } else {
-            setOpen(!open);
-            setClose(!close);
+            // const resp = await axios.post("endpoint api", {name: name, un:un, email: email, password: pass});
+            // if(resp.data !== "error/whatever our message is"){
+                setOpen(!open);
+                setClose(!close);
+            // }
         }
     }
+
+    const clickBack = () => {
+        history.push('/')
+    }
+
+    const clickTutorial = () => {
+        history.push('/Tutorial')
+    }
+
+
 
 
     return <Container>
         <BackCont>
-            <ImgButton src={ArrowLeft} maxwh="30px" />
+            <ImgButton onClick={clickBack} src={ArrowLeft} maxwh="30px" />
         </BackCont>
         <div id="text">
             REGISTER
         </div>
         <InputCont>
-            <InputElements fontSize="15px" minwidth="345px" minheight="50px" placeholder="name" />
-            <InputElements fontSize="15px" minwidth="345px" minheight="50px"  placeholder="username" />
+            <InputElements onChange={(e)=>setName(e.target.value)}  fontSize="15px" minwidth="345px" minheight="50px" placeholder="name" />
+            <InputElements onChange={(e)=>setUn(e.target.value)}  fontSize="15px" minwidth="345px" minheight="50px"  placeholder="username" />
             <InputElements onChange={(e)=>setEmail(e.target.value)}  fontSize="15px" minwidth="345px" minheight="50px"  placeholder="email"/>
             <InputElements onChange={(e)=>setPass(e.target.value)} fontSize="15px" minwidth="345px" minheight="50px"  placeholder="password" type="password"/>
             <InputElements onChange={(e)=>setPassconfirm(e.target.value)} fontSize="15px" minwidth="345px" minheight="50px"  placeholder="confirm password" type="password" />
@@ -133,7 +152,7 @@ const RegisterPage = () => {
         </ButtonCont>
         <div className={open ? "open" : null}>
                <Overlay >
-                 <PopUp />
+                 <PopUp onClick={clickTutorial} />
              </Overlay>
         </div>
     </Container>

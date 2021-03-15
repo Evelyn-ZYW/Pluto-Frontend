@@ -4,6 +4,7 @@ import ImgButton from '../../comps/ImgButton';
 import Button from '../../comps/Button';
 import InputElements from '../../comps/Input';
 import ArrowLeft from '../../assets/left_arrow.png';
+import {useHistory} from 'react-router-dom';
 
 const Container = styled.div`
 border: 1px solid black;
@@ -48,10 +49,15 @@ width: 100%;
 
 const LoginPage = () => {
 
+    const history = useHistory();
+
+    const clickBack = () => {
+        history.push('/')
+    }
 
     return <Container>
         <BackCont>
-            <ImgButton src={ArrowLeft} maxwh="30px" />
+            <ImgButton onClick={clickBack} src={ArrowLeft} maxwh="30px" />
         </BackCont>
         <div id="text">
             LOGIN
