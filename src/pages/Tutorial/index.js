@@ -6,9 +6,6 @@ import Navigation from  '../../comps/Navigation';
 import ArrowRight from '../../assets/right_arrow.png';
 
 
-import { Tutorial2 } from 'stories/Components.stories';
-import { Tutorial3 } from 'stories/Components.stories';
-
 const Container  = styled.div`
 border: 1px solid black;
 width: 414px;
@@ -40,24 +37,57 @@ min-width: 90%;
 
 
 
-const TutorialPage = () => {
 
+const TutorialPage = () => {
 
     
     return <Container>
         <Main>
-        <Tutorial  bshadow={"none"}
-                    bgcolor={"none"}
-                    icon4={ArrowRight}
-                   
-                   />
-                
-         {/* <Tutorial2 />
-        <Tutorial3 /> */}
-
+        <Tutorial/>
         </Main>
         <Navigation/>
     </Container>
 }
 
+// const TutorialPage = () => {
+
+//     const Step1 = ({Next}) => {
+//         return (
+//             <Tutorial  bshadow={"none"}
+//                         bgcolor={"none"}
+//                         icon4={ArrowRight}
+//                         onClick={Next}
+//                        />
+//         )
+//     }
+    
+//     const Step2 = ({NextNext}) => {
+//         return (
+//             <Tutorial2 
+//              onClick={NextNext}/>
+//         )
+//     }
+    
+//     const Step3 = ({}) => {
+//         const history = useHistory();
+    
+//         return (
+//             <Tutorial3 />
+//         )
+//     }
+
+//     return  <Container>
+//                 <Main >
+//                 <StepWizard>
+//                     <Step1  />
+//                     <Step2 />
+//                     <Step3 />
+//                 </StepWizard>
+//                 </Main>
+//              <Navigation />
+//             </Container>
+
+// }
+
 export default TutorialPage
+
