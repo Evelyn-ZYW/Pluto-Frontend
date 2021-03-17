@@ -84,7 +84,14 @@ max-width: ${props => props.maxwidthbuttons ? props.maxwidthbuttons : ""};
 min-width: ${props => props.minwidthbuttons ? props.minwidthbuttons : ""};
 `;
 
-const Tutorial = ({minheighttext, maxheighttext, margintopcont, maxwidthbuttons, minwidthbuttons, justifycontent, margintopbuttons, minwidthtext, maxwidthtext, margintopimage, marginbottomimage, maxwidthimage, minwidthimage, backsrc, nextSrc,text, imgsrc, color, bgcolor, padding, maxheight, maxwidth, minheight, minwidth, radius, fontFamily, fontSize, fontWeight, onClickBack, onClickForward  }) => {
+const Top = styled.div`
+    width: 105%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+`;
+
+const Tutorial = ({minheighttext, onClickExit, exitsrc, maxheighttext, margintopcont, maxwidthbuttons, minwidthbuttons, justifycontent, margintopbuttons, minwidthtext, maxwidthtext, margintopimage, marginbottomimage, maxwidthimage, minwidthimage, backsrc, nextSrc,text, imgsrc, color, bgcolor, padding, maxheight, maxwidth, minheight, minwidth, radius, fontFamily, fontSize, fontWeight, onClickBack, onClickForward  }) => {
   return <Container  
   color={color}
   bgcolor={bgcolor}
@@ -99,6 +106,10 @@ const Tutorial = ({minheighttext, maxheighttext, margintopcont, maxwidthbuttons,
   fontWeight={fontWeight}
   margintopcont={margintopcont}
   >
+      <Top>
+            <ImgButton src={exitsrc} maxwh="20px" maxht="20px" onClick={onClickExit} />
+      </Top>
+
       <ImageCont
        maxwidthimage={maxwidthimage}
        minwidthimage={minwidthimage}
@@ -133,7 +144,8 @@ const Tutorial = ({minheighttext, maxheighttext, margintopcont, maxwidthbuttons,
 
 Tutorial.defaultProps = {
   onClickBack:()=>{},
-  onClickForward: ()=>{}
+  onClickForward: ()=>{},
+  onClickExit: ()=>{},
 }
 
 export default Tutorial 

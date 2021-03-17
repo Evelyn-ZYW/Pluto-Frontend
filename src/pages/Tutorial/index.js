@@ -10,6 +10,7 @@ import Go from './icons/go1.png';
 import Home from './icons/home.png';
 import New from './icons/new.png';
 import Puppy from './icons/puppy.png';
+import Close from './icons/close.png'
 
 import {useHistory} from 'react-router-dom';
 
@@ -80,10 +81,14 @@ const TutorialPage = () => {
         }
     }
 
+    const clickExit = () => {
+        history.push('/AllPosts')
+    }
+
 
     
     return <Container>
-        <Tutorial maxheighttext="159px" minheighttext="159px" onClickForward={clickNext} onClickBack={clickBack} margintopcont="100px" minwidthbuttons="300px" maxwidthbuttons="300px" margintopbuttons="35px" justifycontent={flex} maxwidthtext="240px" marginbottomimage="50px" margintopimage="120px" minwidthimage="138px" maxwidthimage="139px" bgcolor="#DCD8F1" radius="35px" maxheight="557px"  maxwidth="300px" fontWeight="300" fontSize="22px" maxwidthimage="20px" text={textInner} imgsrc={imgInner} backsrc={imgBack} nextSrc={imgNext} />
+        <Tutorial onClickExit={clickExit} exitsrc={Close} maxheighttext="159px" minheighttext="159px" onClickForward={clickNext} onClickBack={clickBack} margintopcont="100px" minwidthbuttons="300px" maxwidthbuttons="300px" margintopbuttons="35px" justifycontent={flex} maxwidthtext="240px" marginbottomimage="50px" margintopimage="120px" minwidthimage="138px" maxwidthimage="139px" bgcolor="#DCD8F1" radius="35px" maxheight="557px"  maxwidth="300px" fontWeight="300" fontSize="22px" maxwidthimage="20px" text={textInner} imgsrc={imgInner} backsrc={imgBack} nextSrc={imgNext} />
         <Navigation maxheight="60px" minwidth="400px"/>
     </Container>
 }
