@@ -3,6 +3,9 @@ import FirstScreen from 'pages/FirstScreen';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 import TutorialPage from 'pages/Tutorial';
+import PostPage from 'pages/Post';
+import AddPost from 'pages/AddPost';
+import ProfilePage from 'pages/Profile';
 
 import {
   BrowserRouter as Router,
@@ -10,6 +13,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
+
 
 
 function App() {
@@ -28,6 +33,15 @@ function App() {
           </Route>
           <Route exact path='/Tutorial'>
             <TutorialPage />
+          </Route>
+          <Route exact path='/AllPosts'>
+            <PostPage />
+          </Route>
+          <Route exact path='/AddPost'>
+            <AddPost />
+          </Route>
+          <Route exact path='/Profile'>
+            <ProfilePage />
           </Route>
         </Switch>
       </div>

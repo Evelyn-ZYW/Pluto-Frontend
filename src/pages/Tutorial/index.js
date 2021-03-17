@@ -4,7 +4,14 @@ import Tutorial from '../../comps/Tutorial';
 import Navigation from  '../../comps/Navigation';
 
 import ArrowRight from '../../assets/right_arrow.png';
+import ArrowBack from '../../assets/left_arrow.png';
+import Go from './icons/go1.png';
 
+import Home from './icons/home.png';
+import New from './icons/new.png';
+import Puppy from './icons/puppy.png';
+
+import {useHistory} from 'react-router-dom';
 
 const Container  = styled.div`
 border: 1px solid black;
@@ -15,79 +22,72 @@ flex-direction: column;
 align-items: center;
 justify-content: space-between;
 
-#text {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 21px;
-    width: 100%;
-    margin-left: 50px;
-    margin-bottom: 30px;
-    margin-top: 50px;
-}
 
 `;
-const Main = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-margin-top:50px;
-max-width: 90%;
-min-width: 90%;
-`;
+
 
 
 
 
 const TutorialPage = () => {
 
+    const history = useHistory();
+
+    const [textInner, setText] = useState("This is the homepage button. Here you will find all the posts.");
+    const [imgInner, setimgInner] = useState(Home);
+    const [imgBack, setimgBack] = useState(null);
+    const [imgNext, setimgNext] = useState(ArrowRight);
+    const [flex, setFlex] = useState("flex-end");
+    const [num, setNum] = useState(1)
+
+    const clickNext = () => {
+        if (num === 1){
+         setText("Click this button to upload a post. Here you will choose a picture and add add a caption.");
+        setimgInner(New);
+        setimgBack(ArrowBack);
+        setFlex("space-between")
+        setNum(2)   
+        }
+        if (num === 2){
+            setText("Click this button to view your profile. Here you will find all your posts. You can also change your settings here.");
+            setimgInner(Puppy);
+            setimgBack(ArrowBack);
+            setimgNext(Go);
+            setFlex("space-between")
+            setNum(3) 
+        }
+        if (num === 3){
+            history.push('/AllPosts')
+        }
+    }
+
+    const clickBack = () => {
+        if (num === 2) {
+            setText("This is the homepage button. Here you will find all the posts.");
+            setimgInner(Home);
+            setimgBack(null);
+            setFlex("flex-end")
+            setNum(1) 
+        }
+
+        if (num === 3) {
+            setText("Click this button to upload a post. Here you will choose a picture and add add a caption.");
+            setimgInner(New);
+            setimgBack(ArrowBack);
+            setimgNext(ArrowRight);
+            setFlex("space-between")
+            setNum(2) 
+        }
+    }
+
+
     
     return <Container>
-        <Main>
-        <Tutorial/>
-        </Main>
-        <Navigation/>
+        <Tutorial maxheighttext="159px" minheighttext="159px" onClickForward={clickNext} onClickBack={clickBack} margintopcont="100px" minwidthbuttons="300px" maxwidthbuttons="300px" margintopbuttons="35px" justifycontent={flex} maxwidthtext="240px" marginbottomimage="50px" margintopimage="120px" minwidthimage="138px" maxwidthimage="139px" bgcolor="#DCD8F1" radius="35px" maxheight="557px"  maxwidth="300px" fontWeight="300" fontSize="22px" maxwidthimage="20px" text={textInner} imgsrc={imgInner} backsrc={imgBack} nextSrc={imgNext} />
+        <Navigation maxheight="60px" minwidth="400px"/>
     </Container>
 }
 
-// const TutorialPage = () => {
-
-//     const Step1 = ({Next}) => {
-//         return (
-//             <Tutorial  bshadow={"none"}
-//                         bgcolor={"none"}
-//                         icon4={ArrowRight}
-//                         onClick={Next}
-//                        />
-//         )
-//     }
-    
-//     const Step2 = ({NextNext}) => {
-//         return (
-//             <Tutorial2 
-//              onClick={NextNext}/>
-//         )
-//     }
-    
-//     const Step3 = ({}) => {
-//         const history = useHistory();
-    
-//         return (
-//             <Tutorial3 />
-//         )
-//     }
-
-//     return  <Container>
-//                 <Main >
-//                 <StepWizard>
-//                     <Step1  />
-//                     <Step2 />
-//                     <Step3 />
-//                 </StepWizard>
-//                 </Main>
-//              <Navigation />
-//             </Container>
-
-// }
 
 export default TutorialPage
 

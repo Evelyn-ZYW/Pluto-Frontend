@@ -72,7 +72,7 @@ const ProfilePage = () => {
             <div></div>
             <div></div>
         </Bottom>
-        <Navigation />
+        <Navigation minwidth="400px" />
     </Container>
 }
 
