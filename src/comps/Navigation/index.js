@@ -6,6 +6,8 @@ import Home1 from 'assets/home.png';
 import Plus1 from 'assets/new.png';
 import User1 from 'assets/puppy.png';
 
+import {useHistory} from 'react-router-dom';
+
 const Container = styled.div`
     background-color: ${props => props.bgcolor ? props.bgcolor : "#DCD8F1"};
     display: flex;
@@ -38,15 +40,35 @@ margin-right: 12px;
 `;
 
 
-const Navigtion = () => {
-    return <Container>
-        <Home src={Home1}>
+const Navigtion = ({minheight, minwidth, maxheight, maxwidth}) => {
+
+    const history = useHistory();
+
+    const clickNew = () => {
+        history.push('/AddPost')
+    }
+
+    const clickHome = () => {
+        history.push('/AllPosts')
+    }
+
+    const clickProfile = () => {
+        history.push('/Profile')
+    }
+
+    return <Container
+    maxwidth={maxwidth}
+    minwidth={minwidth}
+    maxheight={maxheight}
+    minheight={minheight}
+    >
+        <Home onClick={clickHome} src={Home1}>
 
         </Home>
-        <PlusPost src={Plus1}>
+        <PlusPost onClick={clickNew} src={Plus1}>
 
         </PlusPost>
-        <Puppy src={User1}>
+        <Puppy onClick={clickProfile} src={User1}>
 
         </Puppy>
     </Container>

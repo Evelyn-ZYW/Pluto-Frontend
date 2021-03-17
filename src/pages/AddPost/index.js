@@ -5,6 +5,7 @@ import Input from '../../comps/Input';
 import Upload from '../../comps/Upload';
 import Navigation from '../../comps/Navigation';
 import Close from '../../assets/close.png';
+import {useHistory} from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -52,6 +53,9 @@ const Bottom = styled.div`
 `;
 
 const AddPost = () => {
+
+    const history = useHistory();
+
     const [upload, setUpload] = useState();
     const [image, setImage] = useState({ preview: '', raw: '' });
 
@@ -63,9 +67,13 @@ const AddPost = () => {
         })
     }
 
+    const clickExit = () =>{
+        history.push('/AllPosts')
+    }
+
     return <Container>
         <Top>
-            <ImgButton src={Close} maxwh="27px" maxht="27px" />
+            <ImgButton src={Close} maxwh="27px" maxht="27px" onClick={clickExit} />
             <h3 id="center">NEW POST</h3>
             {upload ? <h3 id="post">POST</h3> : <h3></h3>}
         </Top>
@@ -81,7 +89,7 @@ const AddPost = () => {
                 bradius="10px"
             />
         </Bottom>
-        <Navigation />
+        <Navigation minwidth="400px" />
     </Container>
 }
 

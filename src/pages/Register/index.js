@@ -96,25 +96,46 @@ const RegisterPage = () => {
     const [name, setName] = useState("");
     const [un, setUn] = useState("");
     const [email, setEmail] = useState("");
-    const [pass, setPass] = useState("");
+    const [pass, setPass] = useState("null");
     const [passconfirm, setPassconfirm] = useState("");
     
     const [error, setError] = useState(null);
+    const [goodpass, setGoodPass] = useState("");
+    const [goodemail, setGoodEmail] = useState("");
 
     const clickNext = async() => {
         var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        console.log(error)
+        console.log("pass", goodpass);
+        console.log("email", goodemail)
+
+
+        if(pass === passconfirm && pass !== "null" && email.match(mailformat)){
+    
+                // const resp = await axios.post("endpoint api", {name: name, un:un, email: email, password: pass});
+                // if(resp.data !== "error/whatever our message is"){
+                    setOpen(!open);
+                    setClose(!close);
+                // }
+            
+        }
+
+        // if(email.match(mailformat)){
+        //     setGoodEmail("emailgood")
+        // }
 
         if(pass !== passconfirm){
             setError("Passwords do not match")
-        } else if (!email.match(mailformat)){
+        } if (!email.match(mailformat)){
             setError("email format is invalid")
-        } else {
-            // const resp = await axios.post("endpoint api", {name: name, un:un, email: email, password: pass});
-            // if(resp.data !== "error/whatever our message is"){
-                setOpen(!open);
-                setClose(!close);
-            // }
-        }
+        } 
+        // if (goodpass === "passgood" && goodemail === "emailgood") {
+        //     // const resp = await axios.post("endpoint api", {name: name, un:un, email: email, password: pass});
+        //     // if(resp.data !== "error/whatever our message is"){
+        //         setOpen(!open);
+        //         setClose(!close);
+        //     // }
+        // }
     }
 
     const clickBack = () => {

@@ -37,7 +37,7 @@ return <Container>
         <Main>
         <Post/>
         </Main>
-    <Navigation/>
+    <Navigation minwidth="400px"/>
 </Container>
 }
 
