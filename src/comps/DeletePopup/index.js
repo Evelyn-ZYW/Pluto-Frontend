@@ -38,7 +38,7 @@ const Buttons = styled.div`
     bottom: 0px;
 `;
 
-const DeletePopup = ({ title, content, option1, option2 }) => {
+const DeletePopup = ({ title, content, option1, option2, onClick }) => {
     const [select, setSelect] = useState(null);
 
     return <Container>
@@ -54,9 +54,9 @@ const DeletePopup = ({ title, content, option1, option2 }) => {
                 radius={"0 0 0 8px"}
                 bshadow={"none"}
                 borderR={"1px solid black"}
-                bgcolor={select === 1 ? "#B6AEA7" : "#F1E8E1"}
                 select={1}
-                onClick={() => setSelect(1)}
+                bgcolor={select === 1 ? "#B6AEA7" : "#F1E8E1"}
+                onClick={()=>onClick(1)}
             />
             <Button
                 text={option2}
@@ -64,10 +64,10 @@ const DeletePopup = ({ title, content, option1, option2 }) => {
                 minheight={"40px"}
                 radius={"0 0 8px 0"}
                 bshadow={"none"}
+                select={2}
                 bgcolor={select === 2 ? "#B6AEA7" : "#F1E8E1"}
                 color={"#FF0000"}
-                select={2}
-                onClick={() => setSelect(2)}
+                onClick={()=>onClick(2)}
             />
         </Buttons>
     </Container>

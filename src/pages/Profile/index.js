@@ -7,6 +7,7 @@ import More from '../../assets/more.png';
 import Avatar from '../../assets/a1.png';
 import Cute1 from '../../assets/pomer.jpg';
 import Cute2 from '../../assets/cute.jpeg';
+import { useHistory } from 'react-router-dom';
 
 const Container = styled.div`
 border: 1px solid black;
@@ -49,21 +50,22 @@ const Bottom = styled.div`
     }
 `;
 
-
-
 const ProfilePage = () => {
-
+    const history = useHistory();
+    const EditProfile = () => {
+        history.push('/EditProfile')
+    }
     return <Container>
         <Top>
             <h3 className="uname">Username</h3>
-            <ImgButton src={More} maxwh="27px" maxht="27px" />
+            <ImgButton src={More} maxwh="27px" maxht="27px" onClick={EditProfile} />
         </Top>
         <Middle>
             <Profile src={Avatar} />
         </Middle>
         <Bottom className="bottom">
-            <div><img src={Cute1}/></div>
-            <div><img src={Cute2}/></div>
+            <div><img src={Cute1} /></div>
+            <div><img src={Cute2} /></div>
             <div></div>
             <div></div>
             <div></div>

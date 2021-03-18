@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ImgButton from '../../comps/ImgButton';
-import Input from '../../comps/Input';
 import Upload from '../../comps/Upload';
 import Navigation from '../../comps/Navigation';
 import Close from '../../assets/close.png';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -50,6 +49,21 @@ const Middle = styled.div`
 `;
 const Bottom = styled.div`
 
+    #area {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+        font-size: 21px;
+        resize: none;
+        outline: none;
+        border: 1px solid;
+        border-radius: 10px;
+        display: block;
+        box-sizing: border-box;
+        width: 371px;
+        height: 220px;
+        padding: 20px;
+        background-position: bottom right;
+    }
 `;
 
 const AddPost = () => {
@@ -59,6 +73,7 @@ const AddPost = () => {
     const [upload, setUpload] = useState();
     const [image, setImage] = useState({ preview: '', raw: '' });
 
+
     const HandleUpload = (e) => {
         setUpload(true);
         setImage({
@@ -67,9 +82,10 @@ const AddPost = () => {
         })
     }
 
-    const clickExit = () =>{
+    const clickExit = () => {
         history.push('/AllPosts')
     }
+
 
     return <Container>
         <Top>
@@ -81,13 +97,9 @@ const AddPost = () => {
             {upload ? <Upload onChange={HandleUpload} url={image.preview} display={"none"} /> : <Upload onChange={HandleUpload} url={image.preview} />}
         </Middle>
         <Bottom>
-            <Input
-                maxwidth="371px"
-                minwidth="371px"
-                maxheight="220px"
-                minheight="220px"
-                bradius="10px"
-            />
+            <textarea id="area" placeholder="caption here..."
+                maxLength="150"
+            ></textarea>
         </Bottom>
         <Navigation minwidth="400px" />
     </Container>
