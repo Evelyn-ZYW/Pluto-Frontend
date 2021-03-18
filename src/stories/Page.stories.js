@@ -5,6 +5,7 @@ import RegisterPage from '../pages/Register';
 import ProfilePage from '../pages/Profile';
 import AddPostPage from '../pages/AddPost';
 import TutorialPage from '../pages/Tutorial';
+import EditProfile from '../pages/EditProfile';
 
 //below are the imported icons
 import Avatar from '../assets/a1.png';
@@ -25,3 +26,4 @@ export const MyProfilePage = () => <ProfilePage src={Avatar}/>;
 export const MyAddPostPage = () => <AddPostPage />;
 export const MyTutorialPage = () => <TutorialPage/>;
 export const MyPostPage = () => <PostPage />;
+export const EditProfilePage = () => <EditProfile />;

@@ -6,6 +6,7 @@ import TutorialPage from 'pages/Tutorial';
 import PostPage from 'pages/Post';
 import AddPost from 'pages/AddPost';
 import ProfilePage from 'pages/Profile';
+import EditProfile from 'pages/EditProfile';
 
 import {
   BrowserRouter as Router,
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route exact path='/Profile'>
             <ProfilePage />
+          </Route>
+          <Route exact path='/EditProfile'>
+            <EditProfile />
           </Route>
         </Switch>
       </div>
