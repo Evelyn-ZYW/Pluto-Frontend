@@ -14,11 +14,12 @@ const Container = styled.form`
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     & > img {
-        max-width: 414px;
-        min-width: 414px;
-        max-height: 414px;
-        min-height: 414px;
+        // max-width: 414px;
+    //    height: auto:
+       object-fit: fill;
+
     }
 `;
 const Icon = styled.img`

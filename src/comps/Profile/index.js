@@ -33,9 +33,9 @@ const Bio = styled.p`
     font-weight: 300;
     font-size: 21px;
 `;
-const Profile = ({ username, bio, src }) => {
+const Profile = ({ onClick, username, bio, src }) => {
 
-    return <Container>
+    return <Container onClick={onClick}>
 
         <Img src={src} />
         <Name>{username}</Name>
@@ -46,6 +46,7 @@ const Profile = ({ username, bio, src }) => {
 
 Profile.defaultProps = {
     username: 'Username',
+    onClick: ()=>{},
     bio: 'hello,',
     src: "assets/a1.png"
 }
