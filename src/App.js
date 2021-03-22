@@ -7,6 +7,8 @@ import PostPage from 'pages/Post';
 import AddPost from 'pages/AddPost';
 import ProfilePage from 'pages/Profile';
 import EditProfile from 'pages/EditProfile';
+import EditPost from 'pages/EditPost';
+import MyPost from 'pages/MyPost';
 
 import {
   BrowserRouter as Router,
@@ -46,6 +48,12 @@ function App() {
           </Route>
           <Route exact path='/EditProfile'>
             <EditProfile />
+          </Route>
+          <Route exact path='/EditPost'>
+            <EditPost />
+          </Route>
+          <Route exact path='/MyPost'>
+            <MyPost />
           </Route>
         </Switch>
       </div>
