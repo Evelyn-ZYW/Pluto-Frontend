@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import ImgButton from '../../comps/ImgButton';
 import Button from '../../comps/Button';
 import InputElements from '../../comps/Input';
 import ArrowLeft from '../../assets/left_arrow.png';
 import {useHistory} from 'react-router-dom';
+import axios from 'axios'
 
 const Container = styled.div`
 border: 1px solid black;
@@ -49,11 +50,39 @@ width: 100%;
 
 const LoginPage = () => {
 
+
     const history = useHistory();
 
+    const [user, setUsername] = useState(null);
+    const [pass, setPassword] = useState(null);
+    const [error, setError] = useState(null);
+    
+    const clickLogin = async() => {
+    
+
+        if(pass === null) {
+            setError("please enter a password")
+        }
+
+        if(user === null) {
+            setError("please enter a username")
+        }
+
+        if(pass !== null && user !== null){
+                const resp = await axios.post("https://pluto-db.herokuapp.com/api/users/login", { username:user, password: pass});
+                if(resp.data !== error){
+                    history.push('/AllPosts')
+                } else {
+                    setError("There was a problem logging in, please try again.")
+                }
+            
+        }
+    }
     const clickBack = () => {
         history.push('/')
     }
+
+    
 
     return <Container>
         <BackCont>
@@ -63,11 +92,11 @@ const LoginPage = () => {
             LOGIN
         </div>
         <InputCont>
-            <InputElements fontSize="15px" minwidth="345px" minheight="50px"  placeholder="username" />
-            <InputElements fontSize="15px" minwidth="345px" minheight="50px"  placeholder="password" type="password"/>
+            <InputElements onChange={(e)=>setUsername(e.target.value)}  fontSize="15px" minwidth="345px" minheight="50px"  placeholder="username" />
+            <InputElements onChange={(e)=>setPassword(e.target.value)}  fontSize="15px" minwidth="345px" minheight="50px"  placeholder="password" type="password"/>
         </InputCont> 
         <ButtonCont>
-             <Button  text="NEXT" maxheight="50px" minwidth="345px" bgcolor="#DCD8F1" radius="40px" border="none" />
+             <Button onClick={clickLogin} text="NEXT" maxheight="50px" minwidth="345px" bgcolor="#DCD8F1" radius="40px" border="none" />
         </ButtonCont>
     </Container>
 }
