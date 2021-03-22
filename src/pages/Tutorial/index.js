@@ -58,7 +58,7 @@ const TutorialPage = () => {
             setNum(3) 
         }
         if (num === 3){
-            history.push('/AllPosts')
+            history.push('/Login')
         }
     }
 
@@ -82,7 +82,7 @@ const TutorialPage = () => {
     }
 
     const clickExit = () => {
-        history.push('/AllPosts')
+        history.push('/Login')
     }
 
 

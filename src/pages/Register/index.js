@@ -112,11 +112,13 @@ const RegisterPage = () => {
 
         if(pass === passconfirm && pass !== "null" && email.match(mailformat)){
     
-                // const resp = await axios.post("endpoint api", {name: name, un:un, email: email, password: pass});
-                // if(resp.data !== "error/whatever our message is"){
+                const resp = await axios.post("https://pluto-db.herokuapp.com/api/user_register", {name: name, username:un, email: email, password: pass});
+                if(resp.data !== error){
                     setOpen(!open);
                     setClose(!close);
-                // }
+                } else {
+                    setError("There was a problem registering, please try again.")
+                }
             
         }
 
