@@ -9,6 +9,8 @@ import ProfilePage from 'pages/Profile';
 import EditProfile from 'pages/EditProfile';
 import EditPost from 'pages/EditPost';
 import MyPost from 'pages/MyPost';
+import EditPP from 'pages/EditPP';
+
 
 import {
   BrowserRouter as Router,
@@ -54,6 +56,9 @@ function App() {
           </Route>
           <Route exact path='/MyPost'>
             <MyPost />
+          </Route>
+          <Route exact path='/EditPP'>
+            <EditPP />
           </Route>
         </Switch>
       </div>

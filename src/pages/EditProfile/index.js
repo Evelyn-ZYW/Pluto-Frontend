@@ -7,6 +7,7 @@ import InputElements from '../../comps/Input';
 import DeletePopup from '../../comps/DeletePopup';
 import ArrowLeft from '../../assets/left_arrow.png';
 import Avatar from '../../assets/a1.png';
+import New from '../../assets/new.png';
 import { useHistory } from 'react-router-dom';
 
 
@@ -71,6 +72,10 @@ const Middle = styled.div`
     }
 `;
 
+const Add = styled.img`
+
+`;
+
 const Bottom = styled.div`
     height: 10%;
     display: flex;
@@ -102,6 +107,11 @@ const EditProfile = () => {
     const LogOut = () => {
         setDisplay(true);
     }
+    
+    const clickPicture = () => {
+        history.push('/EditPP')
+    }
+        
     const HandleClick = (selected) => {
         if (selected === 1) {
             setDisplay(false);
@@ -121,9 +131,9 @@ const EditProfile = () => {
             <ImgButton src={ArrowLeft} maxwh="30px" onClick={GoBack} />
         </Top>
         <Middle>
-            <Profile src={Avatar} />
+            <Profile onClick={clickPicture}  src={Avatar} />
+            <Add src={New} />
             <InputElements onChange={(e) => setName(e.target.value)} fontSize="15px" minwidth="345px" minheight="50px" placeholder="name" className="inputs" />
-            <InputElements onChange={(e) => setUn(e.target.value)} fontSize="15px" minwidth="345px" minheight="50px" placeholder="username" className="inputs" />
             <div>
                 <textarea id="area" placeholder="bio"
                     maxLength="150"
