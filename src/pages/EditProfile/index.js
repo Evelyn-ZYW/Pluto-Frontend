@@ -9,6 +9,7 @@ import ArrowLeft from '../../assets/left_arrow.png';
 import Avatar from '../../assets/a1.png';
 import New from '../../assets/new.png';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Container = styled.div`
@@ -123,8 +124,24 @@ const EditProfile = () => {
     const handleWordCount = (e) => {
         setCount(e.target.value.length);
     }
+
+
+
+    // const CheckToken = async () => {
+    //     //asume we will store the token in the sessionStorage
+    //     const token = await sessionStorage.getItem("token");
+    //     console.log("token", token)
+    //     if(token){
+    //         axios.defaults.headers.common['Authorization'] = token;
+          
+    //     } else {
+    //           history.push('/');
+    //     }
+    // }
+
     useEffect(() => {
         setDisplay(false);
+        // CheckToken();
     }, [])
     return <Container>
         <Top>

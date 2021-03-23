@@ -5,6 +5,7 @@ import Upload from '../../comps/Upload';
 import Navigation from '../../comps/Navigation';
 import Close from '../../assets/close.png';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Container = styled.div`
@@ -72,6 +73,25 @@ const AddPost = () => {
 
     const [upload, setUpload] = useState();
     const [image, setImage] = useState({ preview: '', raw: '' });
+    const [img, setImg] = useState("");
+    const [caption, setCaption] = useState("");
+
+    const CreatePost = async event => {
+        event.preventDefault()
+        var token = await sessionStorage.getItem("token")
+        if (token) {
+          axios.defaults.headers.common['Authorization'] = token;
+        } else {
+          history.push("/Login");
+        }
+        const data = new FormData();
+        data.append('img_url', img)
+        data.append('caption', caption)
+        const resp = await axios.post('http://localhost:8080/api/create_posts', data
+        );
+        console.log("resp", resp.data)
+      }
+    
 
 
     const HandleUpload = (e) => {
@@ -80,6 +100,7 @@ const AddPost = () => {
             preview: URL.createObjectURL(e.target.files[0]),
             raw: e.target.files[0]
         })
+        setImg(e.target.files[0])
     }
 
     const clickExit = () => {
@@ -91,13 +112,13 @@ const AddPost = () => {
         <Top>
             <ImgButton src={Close} maxwh="27px" maxht="27px" onClick={clickExit} />
             <h3 id="center">NEW POST</h3>
-            {upload ? <h3 id="post">POST</h3> : <h3></h3>}
+            {upload ? <h3 onClick={CreatePost} id="post">POST</h3> : <h3></h3>}
         </Top>
         <Middle>
             {upload ? <Upload onChange={HandleUpload} url={image.preview} display={"none"} /> : <Upload onChange={HandleUpload} url={image.preview} />}
         </Middle>
         <Bottom>
-            <textarea id="area" placeholder="caption here..."
+            <textarea onChange={(e)=>setCaption(e.target.value)}  id="area" placeholder="caption here..."
                 maxLength="150"
             ></textarea>
         </Bottom>

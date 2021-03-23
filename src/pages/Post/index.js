@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Navigation from  '../../comps/Navigation';
 import Post from '../../comps/Post';
+import axios from 'axios';
+import {useHistory} from 'react-router-dom';
 
 const Container  = styled.div`
 border: 1px solid black;
@@ -32,6 +34,23 @@ justify-content: center;
 `;
 
 const PostPage =() =>{
+
+    const history = useHistory();
+
+//     const CheckToken = async () => {
+//         //asume we will store the token in the sessionStorage
+//         const token = await sessionStorage.getItem("token");
+//         console.log("token", token)
+//         if(token){
+//             axios.defaults.headers.common['Authorization'] = token;
+//             history.push("/profile");
+//         }
+//     }
+
+//     useEffect(()=>{
+//         //when the page loads, do the following
+//     CheckToken();
+// },[])
 
 return <Container>
         <Main>
