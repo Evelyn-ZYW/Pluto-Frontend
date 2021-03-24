@@ -16,9 +16,9 @@ const Container = styled.form`
     align-items: center;
     overflow: hidden;
     & > img {
-        // max-width: 414px;
-    //    height: auto:
-       object-fit: fill;
+        max-width: 414px;
+        height: auto:
+        object-fit: cover;
 
     }
 `;

@@ -16,7 +16,7 @@ height: 868px;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: space-between;
+position: relative;
 
 .uname {
     font-family: 'Poppins', sans-serif;
@@ -25,14 +25,15 @@ justify-content: space-between;
 }
 `;
 const Top = styled.div`
-    max-width: 90%;
-    min-width: 90%;
+    width: 90%;
+    min-height: 76px;
+    max-height: 76px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 `;
 const Middle = styled.div`
-
+    height: 300px;
 `;
 const Bottom = styled.div`
     display: grid;

@@ -53,7 +53,7 @@ const DeletePopup = ({ title, content, option1, option2, onClick }) => {
                 minheight={"40px"}
                 radius={"0 0 0 8px"}
                 bshadow={"none"}
-                borderR={"1px solid black"}
+                borderR={"1px solid #C4C4C4"}
                 select={1}
                 bgcolor={select === 1 ? "#B6AEA7" : "#F1E8E1"}
                 onClick={()=>onClick(1)}

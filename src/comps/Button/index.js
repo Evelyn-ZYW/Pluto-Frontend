@@ -13,6 +13,7 @@ const Container = styled.div`
     border-radius: ${props => props.radius ? props.radius : "40px"};
     box-shadow: ${props => props.bshadow ? props.bshadow : "0px 4px 4px rgba(0, 0, 0, 0.45);"};
     border-right: ${props=>props.borderR ? props.borderR : ""};
+    border-bottom: ${props=>props.borderB ? props.borderB : ""};
     font-size: ${props=>props.fontSize ? props.fontSize : "20px"};
     font-family: ${props=>props.fontFamily ? props.fontFamily : "'Poppins', sans-serif"};
     font-weight: ${props=>props.fontWeight ? props.fontWeight : "600"};
@@ -30,7 +31,7 @@ const Img = styled.img`
 
 const Button = ({ text, color, bgcolor, maxwidth, minwidth, maxheight, minheight, radius, bshadow,
      src, maxwh, minwh, 
-     borderR, onClick, padding, fontWeight, fontSize, fontFamily }) => {
+     borderR, borderB, onClick, padding, fontWeight, fontSize, fontFamily }) => {
 
     return <Container
         color={color}
@@ -43,6 +44,7 @@ const Button = ({ text, color, bgcolor, maxwidth, minwidth, maxheight, minheight
         radius={radius}
         bshadow={bshadow}
         borderR={borderR}
+        borderB={borderB}
         onClick={onClick}
         fontFamily={fontFamily}
         fontSize={fontSize}
