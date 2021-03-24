@@ -49,6 +49,8 @@ const Middle = styled.div`
   }
 `;
 const Bottom = styled.div`
+  height: 318px;
+
   #area {
     font-family: "Poppins", sans-serif;
     font-weight: 400;

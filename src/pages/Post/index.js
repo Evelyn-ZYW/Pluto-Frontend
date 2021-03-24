@@ -52,7 +52,7 @@ const PostPage = () => {
     }
     const HandleClick1 = (selected) => {
         if (selected === 1) {
-            history.push('/')
+            history.push('/EditPost')
         } else if (selected === 2) {
             setPopup1(false)
             setPopup2(true)
