@@ -12,7 +12,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
+  position: sticky;
   bottom: 0px;
   margin: 0;
   padding: 7px;
