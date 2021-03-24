@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Navigation from '../../comps/Navigation';
 import Post from '../../comps/Post';
 import ThreeMenu from '../../comps/ThreeMenu';
 import DeletePopup from '../../comps/DeletePopup';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios'
 
 const Container = styled.div`
 border: 1px solid black;
@@ -67,10 +68,31 @@ const PostPage = () => {
             //delete the post
         }
     }
+
+    const [posts, setPosts] = useState([]);
+
+    const GetPosts = async () => {
+        const resp = await axios.get("http://localhost:8080/api/getAllPosts");
+        console.log(resp.data.posts);
+
+            setPosts([
+                ...resp.data.posts
+            ]);
+            console.log(posts, "posts")
+        }  
+
+    useEffect(()=>{
+        //when the page loads, do the following
+    GetPosts();
+},[])
     return <Container>
-        <Main>
-            <Post onClick={More} />
-        </Main>
+ 
+        {posts.map((o, i)=><Post
+        src={o.image}
+        un={o.username}
+        caption={o.caption}
+        />)}
+
         <Navigation minwidth="400px" />
         {popup1 ? <div>
             <Overlay >
