@@ -68,10 +68,16 @@ const LoginPage = () => {
             setError("please enter a username")
         }
 
+
         if(pass !== null && user !== null){
-                const resp = await axios.post("https://pluto-db.herokuapp.com/api/users/login", { username:user, password: pass});
+                const resp = await axios.post("http://localhost:8080/api/users/login", { username:user, password: pass});
                 if(resp.data !== error){
                     history.push('/AllPosts')
+    
+                    const token = resp.data.token;
+                    console.log(token)
+                    sessionStorage.setItem("token", token);
+                    axios.defaults.headers.common['Authorization'] = token;
                 } else {
                     setError("There was a problem logging in, please try again.")
                 }

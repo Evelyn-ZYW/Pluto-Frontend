@@ -10,7 +10,7 @@ import EditProfile from 'pages/EditProfile';
 import EditPost from 'pages/EditPost';
 import MyPost from 'pages/MyPost';
 import EditPP from 'pages/EditPP';
-
+import axios from 'axios';
 
 import {
   BrowserRouter as Router,
@@ -18,8 +18,6 @@ import {
   Route,
   Link
 } from "react-router-dom";
-
-
 
 
 function App() {

@@ -46,7 +46,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
+  "devDe    pendencies": {
     "@storybook/addon-actions": "^6.1.21",
     "@storybook/addon-essentials": "^6.1.21",
     "@storybook/addon-links": "^6.1.21",

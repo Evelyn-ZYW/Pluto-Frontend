@@ -54,8 +54,12 @@ const Top = styled.div`
   }
 `;
 const Middle = styled.div`
-  min-wdith: 414px;
+  max-width: 414px;
   min-height: 414px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justidfy-content: center;
 `;
 const Bottom = styled.div`
   max-width: 90%;
@@ -74,7 +78,8 @@ const Icon = styled.img`
   max-height: 50px;
 `;
 const Image = styled.img`
-  max-width: 414px;
+  // max-width: 414px;
+  object-fit: cover;
 `;
 
 // const Overlay = styled.div`
@@ -135,7 +140,7 @@ const Image = styled.img`
 //     </Container>
 //   );
 // };
-const Post = ({ un, caption, number, onClick }) => {
+const Post = ({src,  un, caption, number, onClick }) => {
 
   return (
     <Container>
@@ -154,7 +159,7 @@ const Post = ({ un, caption, number, onClick }) => {
         </div>
       </Top>
       <Middle>
-        <Image src={Cute} />
+        <Image src={src} />
       </Middle>
       <Bottom>
         <div>
