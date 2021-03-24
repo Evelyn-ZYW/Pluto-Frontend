@@ -45,6 +45,7 @@ const Top = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
+  position: relative;
 
   & > div {
     display: flex;
@@ -81,22 +82,65 @@ const Image = styled.img`
   object-fit: cover;
 `;
 
-const Overlay = styled.div`
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 414px;
-  height: 868px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 17.5px;
-`;
+// const Overlay = styled.div`
+//   background-color: rgba(0, 0, 0, 0.5);
+//   width: 414px;
+//   height: 868px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+// `;
 
-const Post = ({src, un, caption, number }) => {
-  const [open, setOpen] = useState(true);
-  const [close, setClose] = useState(false);
+// const Post = ({ un, caption, number, onClick }) => {
+//   const [open, setOpen] = useState(true);
+//   const [close, setClose] = useState(false);
+
+//   return (
+//     <Container>
+//       <Top>
+//         <div>
+//           <Icon src={Ava1} />
+//           <span style={{ paddingLeft: "10px" }}>{un}</span>
+//         </div>
+//         <div>
+//           <ImgButton
+//             src={More}
+//             maxht="35px"
+//             minht="35px"
+//             onClick={() => {
+//               setOpen(!open);
+//               setClose(!close);
+//             }}
+//           />
+//         </div>
+//       </Top>
+//       <Middle>
+//         <Image src={Cute} />
+//       </Middle>
+//       <Bottom>
+//         <div>
+//           <Icon src={Treat} />
+//           <span style={{ paddingLeft: "10px" }}>#{number}</span>
+//         </div>
+//         <div>
+//           <span>{un}</span>
+//           <span style={{ paddingLeft: "10px" }}>{caption}</span>
+//         </div>
+//       </Bottom>
+//       <div className={open ? "open" : null}>
+//         <Overlay>
+//           <DeletePopup
+//             onClick={onClick}
+//           />
+//         </Overlay>
+//       </div>
+//     </Container>
+//   );
+// };
+const Post = ({src,  un, caption, number, onClick }) => {
 
   return (
     <Container>
@@ -105,21 +149,13 @@ const Post = ({src, un, caption, number }) => {
           <Icon src={Ava1} />
           <span style={{ paddingLeft: "10px" }}>{un}</span>
         </div>
-
-        <ImgButton
-          src={More}
-          maxht="35px"
-          minht="35px"
-          onClick={() => {
-            setOpen(!open);
-            setClose(!close);
-          }}
-        />
-
-        <div className={open ? "open" : null}>
-          <Overlay>
-            <DeletePopup />
-          </Overlay>
+        <div>
+          <ImgButton
+            src={More}
+            maxht="35px"
+            minht="35px"
+            onClick={onClick}
+          />
         </div>
       </Top>
       <Middle>
@@ -138,8 +174,8 @@ const Post = ({src, un, caption, number }) => {
     </Container>
   );
 };
-
 Post.defaultProps = {
+  onClick: ()=>{},
   un: "username",
   number: "",
   caption: ".............",
