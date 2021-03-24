@@ -1,67 +1,62 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useHistory } from 'react-router';
+
+async function postImage({ image, user_id}) {
+  const formData = new FormData();
+
+  formData.append("image", image)
+  formData.append("user_id", user_id)
+
+  const result = await axios.post('http://localhost:8080/api/profile/edit_pp', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+  console.log(result)
+  return result.data
+}
 
 
+function EditPP() {
 
-
-function App() {
-
-
-const [image] = useState(null)
-
-    const EditPicture = async event => {
-        event.preventDefault()
-        const token = await sessionStorage.getItem("token")
-        console.log(token)
-        if (token) {
-            axios.defaults.headers.common['Authorization'] = token;
-        } else {
-            history.push("/");
-        }
-
-        const data = new FormData()
-        data.append('image', image)
-        const resp = await axios.post('http://localhost:8080/api/images', data
-        );
-        console.log(resp)
-
-    }
-
-
-       const CheckToken = async () => {
+    const CheckToken = async () => {
         //asume we will store the token in the sessionStorage
         const token = await sessionStorage.getItem("token");
         console.log("token", token)
-        if(token){
-            axios.defaults.headers.common['Authorization'] = token;
-        }
-        // } else {
-        //       history.push('/');
-        // }
+
+        function parseJwt(token) {
+        if (!token) { return; }
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+         }
+         const data = parseJwt(token);
+         const userId = data.userId
+         console.log("this is the userId", userId)
+         setUI(userId)
     }
 
     useEffect(() => {
         CheckToken();
     }, [])
 
-    const history = useHistory();
-  const [file, setFile] = useState()
+  
+    
 
-//   const submit = async event => {
-//     event.preventDefault()
-//     const result = await postImage({image: file})
-//     history.push('/EditProfile')
-//   }
+   const [user_id, setUI] = useState()
+  const [file, setFile] = useState()
+  const [images, setImages] = useState([])
+
+  const submit = async event => {
+    event.preventDefault()
+    const result = await postImage({ image: file, user_id })
+    setImages([result.image, ...images])
+  }
 
   const fileSelected = event => {
     const file = event.target.files[0]
-		setFile(file)
-	}
+    setFile(file)
+  }
 
   return (
     <div className="App">
-      <form onSubmit={EditPicture}>
+      <form onSubmit={submit}>
         <input onChange={fileSelected} type="file" accept="image/*"></input>
         <button type="submit">Submit</button>
       </form>
@@ -69,4 +64,5 @@ const [image] = useState(null)
   );
 }
 
-export default App;
+export default EditPP;
+
