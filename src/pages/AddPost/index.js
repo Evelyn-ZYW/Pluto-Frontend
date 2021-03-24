@@ -154,7 +154,7 @@ const Bottom = styled.div`
 //         );
 //         console.log("resp", resp.data)
 //       }
-    
+
 
 
 //     const HandleUpload = (e) => {
@@ -192,7 +192,7 @@ const Bottom = styled.div`
 // export default AddPost;
 
 
-async function postImage({ image, description, user_id}) {
+async function postImage({ image, description, user_id }) {
   const formData = new FormData();
 
   formData.append("image", image)
@@ -207,55 +207,109 @@ async function postImage({ image, description, user_id}) {
 
 function AddPost() {
 
-    const CheckToken = async () => {
-        //asume we will store the token in the sessionStorage
-        const token = await sessionStorage.getItem("token");
-        console.log("token", token)
+  const CheckToken = async () => {
+    //asume we will store the token in the sessionStorage
+    const token = await sessionStorage.getItem("token");
+    console.log("token", token)
 
-        function parseJwt(token) {
-        if (!token) { return; }
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace('-', '+').replace('_', '/');
-        return JSON.parse(window.atob(base64));
-         }
-         const data = parseJwt(token);
-         const userId = data.userId
-         console.log("this is the userId", userId)
-         setUI(userId)
+    function parseJwt(token) {
+      if (!token) { return; }
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace('-', '+').replace('_', '/');
+      return JSON.parse(window.atob(base64));
     }
+    const data = parseJwt(token);
+    const userId = data.userId
+    console.log("this is the userId", userId)
+    setUI(userId)
+  }
 
-    useEffect(() => {
-        CheckToken();
-    }, [])
+  useEffect(() => {
+    CheckToken();
+  }, [])
 
-  
-    
+  const [upload, setUpload] = useState();
+  const [photo, setPhoto] =  useState({ preview: '', raw: '' });
+  const [ph, setPh] = useState();
 
-   const [user_id, setUI] = useState()
+  const history = useHistory();
+  const [user_id, setUI] = useState()
   const [file, setFile] = useState()
   const [description, setDescription] = useState("")
   const [images, setImages] = useState([])
 
-  const submit = async event => {
+  const submit = async event=> {
     event.preventDefault()
     const result = await postImage({ image: file, description, user_id })
     setImages([result.image, ...images])
   }
 
   const fileSelected = event => {
+    setUpload(true);
     const file = event.target.files[0]
     setFile(file)
+    setPhoto({
+      preview: URL.createObjectURL(event.target.files[0]),
+    })
   }
 
+  const clickExit = () => {
+    history.push('/AllPosts')
+  }
+
+  const HandleUpload = (e) => {
+    setUpload(true);
+    setPhoto({
+      preview: URL.createObjectURL(e.target.files[0]),
+      raw: e.target.files[0]
+    })
+    setPh(e.target.files[0])
+  }
+
+
   return (
-    <div className="App">
-      <form onSubmit={submit}>
-        <input onChange={fileSelected} type="file" accept="image/*"></input>
-        <input value={description} onChange={e => setDescription(e.target.value)} type="text"></input>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+
+    <Container>
+      <Top>
+      <ImgButton src={Close} maxwh="27px" maxht="27px" onClick={clickExit} />
+      <h3 id="center">NEW POST</h3>
+      {upload ? <h3 onClick={submit} id="post">POST</h3> : <h3></h3>}
+      {/* <h3 onClick={submit}>POST</h3> */}
+    </Top>
+         {/* <form onSubmit={submit}>  */}
+    {/* <input onChange={fileSelected} type="file" accept="image/*"></input> */}
+          <Middle>
+            {upload ? <Upload  onChange={fileSelected} type="file" accept="image/*" display={"none"}  url={photo.preview} /> : <Upload  onChange={fileSelected} type="file" accept="image/*"  url={photo.preview} />}
+        </Middle> 
+     {/* <input value={description} onChange={e => setDescription(e.target.value)} type="text"></input>  */}
+     <Bottom>
+      <textarea value={description} onChange={e => setDescription(e.target.value)} type="text" id="area" placeholder="caption here..."
+        maxLength="150"
+      ></textarea>
+    </Bottom>
+     {/* <button type="submit">Submit</button>  */}
+     {/* </form>  */}
+    </Container>
+ 
+ // <Container>
+    /* <Top>
+      <ImgButton src={Close} maxwh="27px" maxht="27px" onClick={clickExit} />
+      <h3 id="center">NEW POST</h3>
+      {upload ? <h3 onClick={submit} id="post">POST</h3> : <h3></h3>}
+    </Top>
+    <Middle>
+      {upload ? <Upload onChange={() => fileSelected, HandleUpload} type="file" accept="image/*" url={photo.preview} display={"none"} /> : <Upload onChange={() => fileSelected, HandleUpload} type="file" accept="image/*" url={photo.preview} />}
+    </Middle>
+    <Bottom>
+      <textarea value={description} onChange={e => setDescription(e.target.value)} type="text" id="area" placeholder="caption here..."
+        maxLength="150"
+      ></textarea>
+    </Bottom>
+  </Container> */
+
   );
 }
 
 export default AddPost;
+
+
