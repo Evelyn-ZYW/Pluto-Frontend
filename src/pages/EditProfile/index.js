@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ImgButton from '../../comps/ImgButton';
 import Button from '../../comps/Button';
-import Profile from '../../comps/Profile';
+import EditableProfile from '../../comps/EditableProfile';
 import InputElements from '../../comps/Input';
 import DeletePopup from '../../comps/DeletePopup';
 import ArrowLeft from '../../assets/left_arrow.png';
-import Avatar from '../../assets/a1.png';
-import New from '../../assets/new.png';
 import { useHistory } from 'react-router-dom';
 
 
@@ -33,7 +31,6 @@ const Top = styled.div`
     display: flex;
     margin-top: 3%;
     align-items: center;
-    // border: 1px solid red;
 `;
 const Middle = styled.div`
     height: 85%;
@@ -47,6 +44,9 @@ const Middle = styled.div`
         font-weight: 400;
         font-size: 21px;
     }
+    #bio {
+        position: relative;
+    }
     #area {
         font-family: 'Poppins', sans-serif;
         font-weight: 300;
@@ -57,7 +57,7 @@ const Middle = styled.div`
         display: block;
         box-sizing: border-box;
         width: 361px;
-        height: 143px;
+        height: 208px;
         padding: 12px;
     }
 
@@ -66,14 +66,10 @@ const Middle = styled.div`
         font-weight: 300;
         font-size: 15px;
         position: absolute;
-        bottom: 170px;
-        right: 35px;
+        bottom: 10px;
+        right: 10px;
         color: #5B5B5B;
     }
-`;
-
-const Add = styled.img`
-
 `;
 
 const Bottom = styled.div`
@@ -95,6 +91,9 @@ const Overlay = styled.div`
 const EditProfile = () => {
     const history = useHistory();
 
+    const [upload, setUpload] = useState();
+    const [image, setImage] = useState({ preview: '', raw: '' });
+
     const [name, setName] = useState("");
     const [un, setUn] = useState("");
     const [count, setCount] = useState(0);
@@ -110,6 +109,14 @@ const EditProfile = () => {
     
     const clickPicture = () => {
         history.push('/EditPP')
+    }
+
+    const HandleUpload = (e) => {
+        setUpload(true);
+        setImage({
+            preview: URL.createObjectURL(e.target.files[0]),
+            raw: e.target.files[0]
+        })
     }
         
     const HandleClick = (selected) => {
@@ -131,10 +138,9 @@ const EditProfile = () => {
             <ImgButton src={ArrowLeft} maxwh="30px" onClick={GoBack} />
         </Top>
         <Middle>
-            <Profile onClick={clickPicture}  src={Avatar} />
-            <Add src={New} />
+            <EditableProfile onChange={HandleUpload} src={image.preview} />
             <InputElements onChange={(e) => setName(e.target.value)} fontSize="15px" minwidth="345px" minheight="50px" placeholder="name" className="inputs" />
-            <div>
+            <div id="bio">
                 <textarea id="area" placeholder="bio"
                     maxLength="150"
                     onChange={handleWordCount}

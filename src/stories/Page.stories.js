@@ -10,6 +10,7 @@ import EditProfile from '../pages/EditProfile';
 //below are the imported icons
 import Avatar from '../assets/a1.png';
 import PostPage from '../pages/Post';
+import PostPage2 from '../pages/MyPost';
 export default {
   title: 'Pages',
   component: FirstScreen,
@@ -26,4 +27,5 @@ export const MyProfilePage = () => <ProfilePage src={Avatar}/>;
 export const MyAddPostPage = () => <AddPostPage />;
 export const MyTutorialPage = () => <TutorialPage/>;
 export const MyPostPage = () => <PostPage />;
+export const MyPostPage2 = () => <PostPage2 />;
 export const EditProfilePage = () => <EditProfile />;

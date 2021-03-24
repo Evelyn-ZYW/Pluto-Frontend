@@ -12,8 +12,8 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  bottom: 0px;
   margin: 0;
   padding: 7px;
   max-width: ${(props) => (props.maxwidth ? props.maxwidth : "414px")};
