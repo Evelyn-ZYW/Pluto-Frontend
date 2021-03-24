@@ -89,7 +89,7 @@ const Overlay = styled.div`
   margin: 17.5px;
 `;
 
-const Post = ({ un, caption, number }) => {
+const Post = ({src, un, caption, number }) => {
   const [open, setOpen] = useState(true);
   const [close, setClose] = useState(false);
 
@@ -118,7 +118,7 @@ const Post = ({ un, caption, number }) => {
         </div>
       </Top>
       <Middle>
-        <Image src={Cute} />
+        <Image src={src} />
       </Middle>
       <Bottom>
         <div>

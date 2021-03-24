@@ -5,15 +5,6 @@ import { useHistory } from 'react-router';
 
 
 
-// async function postImage({image}) {
-//   const formData = new FormData();
-//   formData.append("image", image)
-//   console.log(image)
-// //   const result = await axios.post("http://localhost:8080/api/images", formData, { headers: {'Content-Type': 'multipart/form-data'}})
-// //   return result.data
-// }
-
-
 function App() {
 
 

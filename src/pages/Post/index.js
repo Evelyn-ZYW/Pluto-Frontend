@@ -33,9 +33,21 @@ justify-content: center;
 
 `;
 
-const PostPage =() =>{
+const PostPage = () =>{
 
     const history = useHistory();
+    const [posts, setPosts] = useState([]);
+
+    const GetPosts = async () => {
+        const resp = await axios.get("http://localhost:8080/api/getAllPosts");
+        console.log(resp.data.posts);
+       
+            setPosts([
+                ...resp.data.posts
+            ]);
+            console.log(posts, "posts")
+        }  
+    
 
 //     const CheckToken = async () => {
 //         //asume we will store the token in the sessionStorage
@@ -47,15 +59,24 @@ const PostPage =() =>{
 //         }
 //     }
 
-//     useEffect(()=>{
-//         //when the page loads, do the following
-//     CheckToken();
-// },[])
+    useEffect(()=>{
+        //when the page loads, do the following
+    GetPosts();
+},[])
 
 return <Container>
-        <Main>
+        {/* <Main>
         <Post/>
-        </Main>
+        </Main> */}
+        {posts.map((o, i)=><Post
+        src={o.image}
+        un={o.username}
+        caption={o.caption}
+        />)}
+
+
+
+
     <Navigation minwidth="400px"/>
 </Container>
 }
