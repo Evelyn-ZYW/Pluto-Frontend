@@ -145,7 +145,7 @@ const Image = styled.img`
 //     </Container>
 //   );
 // };
-const Post = ({src,  un, caption, number, onClick, treatsrc }) => {
+const Post = ({src,  un, caption, number, onClick, ClickMore, treatsrc }) => {
 
   return (
     <Container  onClick={onClick}>
@@ -159,6 +159,7 @@ const Post = ({src,  un, caption, number, onClick, treatsrc }) => {
             src={More}
             maxht="35px"
             minht="35px"
+            onClick={ClickMore}
           />
         </div>
       </Top>

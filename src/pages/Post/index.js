@@ -81,6 +81,7 @@ const PostPage = () => {
 
     const GetPosts = async () => {
         const resp = await axios.get("https://pluto-db.herokuapp.com/api/getAllPosts");
+        // const resp = await axios.get("https://localhost:8080/api/getAllPosts");
         console.log(resp.data.posts);
 
         setPosts([
@@ -111,7 +112,8 @@ const PostPage = () => {
             un={o.username}
             caption={o.caption}
             treatsrc={treatsource}
-          onClick={LikePicture}
+            onClick={LikePicture}
+            ClickMore={More}
         />)}
 
         <Navigation minwidth="400px" />
