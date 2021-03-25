@@ -7,7 +7,7 @@ async function postImage({ image, user_id}) {
   formData.append("image", image)
   formData.append("user_id", user_id)
 
-  const result = await axios.post('http://localhost:8080/api/profile/edit_pp', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+  const result = await axios.post('https://pluto-db.herokuapp.com/api/profile/edit_pp', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
   console.log(result)
   return result.data
 }

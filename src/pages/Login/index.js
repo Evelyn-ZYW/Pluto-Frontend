@@ -70,7 +70,7 @@ const LoginPage = () => {
 
 
         if(pass !== null && user !== null){
-                const resp = await axios.post("http://localhost:8080/api/users/login", { username:user, password: pass});
+                const resp = await axios.post("https://pluto-db.herokuapp.com/api/users/login", { username:user, password: pass});
                 if(resp.data !== error){
                     history.push('/AllPosts')
     
