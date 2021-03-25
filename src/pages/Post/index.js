@@ -80,7 +80,7 @@ const PostPage = () => {
     const [posts, setPosts] = useState([]);
 
     const GetPosts = async () => {
-        const resp = await axios.get("http://localhost:8080/api/getAllPosts");
+        const resp = await axios.get("https://pluto-db.herokuapp.com/api/getAllPosts");
         console.log(resp.data.posts);
 
         setPosts([

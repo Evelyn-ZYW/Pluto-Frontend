@@ -112,7 +112,7 @@ const RegisterPage = () => {
 
         if(pass === passconfirm && pass !== "null" && email.match(mailformat)){
     
-                const resp = await axios.post("http://localhost:8080/api/user_register", {name: name, username:un, email: email, password: pass});
+                const resp = await axios.post("https://pluto-db.herokuapp.com/api/user_register", {name: name, username:un, email: email, password: pass});
                 if(resp.data !== error){
                     setOpen(!open);
                     setClose(!close);

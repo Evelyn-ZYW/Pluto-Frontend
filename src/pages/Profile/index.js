@@ -63,7 +63,7 @@ const ProfilePage = () => {
     const [posts, setPosts] = useState([]);
 
     const GetPosts = async () => {
-        const resp = await axios.get("http://localhost:8080/api/getAllPosts");
+        const resp = await axios.get("https://pluto-db.herokuapp.com/api/getAllPosts");
         console.log(resp.data.posts, "posts");
 
         setPosts([
@@ -78,7 +78,7 @@ const ProfilePage = () => {
     }
 
     const GetProfile = async () => {
-        const resp = await axios.get("http://localhost:8080/api/users/profile");
+        const resp = await axios.get("https://pluto-db.herokuapp.com/api/users/profile");
             console.log(resp.data.user, "users");
             setProfile([
                 ...resp.data.user

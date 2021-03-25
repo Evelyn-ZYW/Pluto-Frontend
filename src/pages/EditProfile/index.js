@@ -168,7 +168,7 @@ const EditProfile = () => {
 
 
     const updateInfo = async () => {
-        const result = await axios.patch(`http://localhost:8080/api/user_update/${user_id}`, {name: name, bio: bio  })
+        const result = await axios.patch(`https://pluto-db.herokuapp.com/api/user_update/${user_id}`, {name: name, bio: bio  })
     }
 
 
