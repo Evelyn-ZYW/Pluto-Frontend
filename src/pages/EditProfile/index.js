@@ -89,11 +89,23 @@ const Overlay = styled.div`
     top: 0;
     left: 0;
 `;
+
+
+async function editProfilePicture({ image, user_id }) {
+    const formData = new FormData();
+
+    formData.append("image", image)
+    formData.append("user_id", user_id)
+
+    const result = await axios.post('http://localhost:8080/api/profile/edit_pp', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+    console.log(result)
+    return result.data
+}
+
+
 const EditProfile = () => {
     const history = useHistory();
 
-    const [upload, setUpload] = useState();
-    const [image, setImage] = useState({ preview: '', raw: '' });
 
     const [name, setName] = useState("");
     const [un, setUn] = useState("");
@@ -107,19 +119,15 @@ const EditProfile = () => {
     const LogOut = () => {
         setDisplay(true);
     }
-    
-    const clickPicture = () => {
-        history.push('/EditPP')
-    }
 
-    const HandleUpload = (e) => {
-        setUpload(true);
-        setImage({
-            preview: URL.createObjectURL(e.target.files[0]),
-            raw: e.target.files[0]
-        })
-    }
-        
+    // const HandleUpload = (e) => {
+    //     setUpload(true);
+    //     setImage({
+    //         preview: URL.createObjectURL(e.target.files[0]),
+    //         raw: e.target.files[0]
+    //     })
+    // }
+
     const HandleClick = (selected) => {
         if (selected === 1) {
             setDisplay(false);
@@ -132,22 +140,53 @@ const EditProfile = () => {
         setCount(e.target.value.length);
     }
 
+    const [upload, setUpload] = useState();
+    const [photo, setPhoto] = useState({ preview: '', raw: '' });
+    const [ph, setPh] = useState();
 
 
-    // const CheckToken = async () => {
-    //     //asume we will store the token in the sessionStorage
-    //     const token = await sessionStorage.getItem("token");
-    //     console.log("token", token)
-    //     if(token){
-    //         axios.defaults.headers.common['Authorization'] = token;
-          
-    //     } else {
-    //           history.push('/');
-    //     }
-    // }
+    const [user_id, setUI] = useState()
+    const [file, setFile] = useState()
+    const [images, setImages] = useState([])
+
+    const submit = async event => {
+        event.preventDefault()
+        const result = await editProfilePicture({ image: file, user_id })
+        setImages([result.image, ...images])
+        history.push('/Profile')
+    }
+
+    const fileSelected = event => {
+        setUpload(true);
+        const file = event.target.files[0]
+        setFile(file)
+        setPhoto({
+            preview: URL.createObjectURL(event.target.files[0]),
+        })
+    }
+
+
+
+    const CheckToken = async () => {
+        //asume we will store the token in the sessionStorage
+        const token = await sessionStorage.getItem("token");
+        console.log("token", token)
+
+        function parseJwt(token) {
+            if (!token) { return; }
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace('-', '+').replace('_', '/');
+            return JSON.parse(window.atob(base64));
+        }
+        const data = parseJwt(token);
+        const userId = data.userId
+        console.log("this is the userId", userId)
+        setUI(userId)
+    }
 
     useEffect(() => {
         setDisplay(false);
+        CheckToken();
         // CheckToken();
     }, [])
     return <Container>
@@ -155,7 +194,7 @@ const EditProfile = () => {
             <ImgButton src={ArrowLeft} maxwh="30px" onClick={GoBack} />
         </Top>
         <Middle>
-            <EditableProfile onChange={HandleUpload} src={image.preview} />
+            <EditableProfile onChange={fileSelected} src={photo.preview} />
             <InputElements onChange={(e) => setName(e.target.value)} fontSize="15px" minwidth="345px" minheight="50px" placeholder="name" className="inputs" />
             <div id="bio">
                 <textarea id="area" placeholder="bio"
@@ -164,7 +203,7 @@ const EditProfile = () => {
                 ></textarea>
                 <div id="measure">{count}/150</div>
             </div>
-            <Button text="Update" maxheight="50px" minwidth="345px" bgcolor="#DCD8F1" radius="40px" border="none" />
+            <Button onClick={submit} text="Update" maxheight="50px" minwidth="345px" bgcolor="#DCD8F1" radius="40px" border="none" />
         </Middle>
         <Bottom>
             <Button

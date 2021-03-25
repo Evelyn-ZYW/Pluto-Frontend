@@ -50,6 +50,7 @@ const PostPage = () => {
     const [popup1, setPopup1] = useState(null);
     const [popup2, setPopup2] = useState(null);
 
+
     const More = () => {
         setPopup1(true);
     }
@@ -87,6 +88,7 @@ const PostPage = () => {
         //when the page loads, do the following
     GetPosts();
 },[])
+
     return <Container>
  
         {posts.map((o, i)=><Post
