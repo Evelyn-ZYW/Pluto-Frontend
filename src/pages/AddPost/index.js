@@ -242,6 +242,7 @@ function AddPost() {
     event.preventDefault()
     const result = await postImage({ image: file, description, user_id })
     setImages([result.image, ...images])
+    history.push('/AllPosts')
   }
 
   const fileSelected = event => {

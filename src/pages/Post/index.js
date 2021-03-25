@@ -6,6 +6,7 @@ import ThreeMenu from '../../comps/ThreeMenu';
 import DeletePopup from '../../comps/DeletePopup';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
+import treated from 'assets/treated.png';
 
 const Container = styled.div`
 border: 1px solid black;
@@ -88,6 +89,16 @@ const PostPage = () => {
         console.log(posts, "posts")
     }
 
+    const [num, setNum] = useState();
+    const [selected, setSelected] = useState();
+    const [treatsource, setTreatSource] = useState()
+
+
+    const LikePicture = async () => {
+        setTreatSource(treated);
+        console.log("hi")
+    }
+
     useEffect(() => {
         //when the page loads, do the following
         GetPosts();
@@ -99,6 +110,8 @@ const PostPage = () => {
             src={o.image}
             un={o.username}
             caption={o.caption}
+            treatsrc={treatsource}
+          onClick={LikePicture}
         />)}
 
         <Navigation minwidth="400px" />

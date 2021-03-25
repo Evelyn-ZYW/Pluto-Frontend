@@ -107,7 +107,6 @@ const EditProfile = () => {
     const history = useHistory();
 
 
-    const [name, setName] = useState("");
     const [un, setUn] = useState("");
     const [count, setCount] = useState(0);
 
@@ -148,6 +147,8 @@ const EditProfile = () => {
     const [user_id, setUI] = useState()
     const [file, setFile] = useState()
     const [images, setImages] = useState([])
+    const [name, setName] = useState()
+    const [bio, setBio] = useState()
 
     const submit = async event => {
         event.preventDefault()
@@ -166,6 +167,10 @@ const EditProfile = () => {
     }
 
 
+    const updateInfo = async () => {
+        const result = await axios.patch(`http://localhost:8080/api/user_update/${user_id}`, {name: name, bio: bio  })
+    }
+
 
     const CheckToken = async () => {
         //asume we will store the token in the sessionStorage
@@ -173,7 +178,7 @@ const EditProfile = () => {
         console.log("token", token)
 
         function parseJwt(token) {
-            if (!token) { return; }
+            // if (!token) { return; }
             const base64Url = token.split('.')[1];
             const base64 = base64Url.replace('-', '+').replace('_', '/');
             return JSON.parse(window.atob(base64));
@@ -199,11 +204,11 @@ const EditProfile = () => {
             <div id="bio">
                 <textarea id="area" placeholder="bio"
                     maxLength="150"
-                    onChange={handleWordCount}
+                    onChange={(e) => setBio(e.target.value), handleWordCount}
                 ></textarea>
                 <div id="measure">{count}/150</div>
             </div>
-            <Button onClick={submit} text="Update" maxheight="50px" minwidth="345px" bgcolor="#DCD8F1" radius="40px" border="none" />
+            <Button onClick={() => submit, updateInfo} text="Update" maxheight="50px" minwidth="345px" bgcolor="#DCD8F1" radius="40px" border="none" />
         </Middle>
         <Bottom>
             <Button
