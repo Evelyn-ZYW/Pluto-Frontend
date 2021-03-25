@@ -19,6 +19,10 @@ align-items: center;
 justify-content: space-between;
 position: relative;
 
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
 #text {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -78,23 +82,23 @@ const PostPage = () => {
         const resp = await axios.get("http://localhost:8080/api/getAllPosts");
         console.log(resp.data.posts);
 
-            setPosts([
-                ...resp.data.posts
-            ]);
-            console.log(posts, "posts")
-        }  
+        setPosts([
+            ...resp.data.posts
+        ]);
+        console.log(posts, "posts")
+    }
 
-    useEffect(()=>{
+    useEffect(() => {
         //when the page loads, do the following
-    GetPosts();
-},[])
+        GetPosts();
+    }, [])
 
     return <Container>
- 
-        {posts.map((o, i)=><Post
-        src={o.image}
-        un={o.username}
-        caption={o.caption}
+
+        {posts.map((o, i) => <Post
+            src={o.image}
+            un={o.username}
+            caption={o.caption}
         />)}
 
         <Navigation minwidth="400px" />
