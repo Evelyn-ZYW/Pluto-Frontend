@@ -17,6 +17,7 @@ const Img = styled.img`
     min-width: ${props => props.minwh ? props.minwh : ""};
     max-height: ${props => props.maxht ? props.maxht : ""};
     min-height: ${props => props.minht ? props.minht : ""};
+    object-fit: cover;
 `;
 
 const Name = styled.h3`
@@ -32,11 +33,11 @@ const Bio = styled.p`
     font-weight: 300;
     font-size: 21px;
 `;
-const Profile = ({ onClick, username, bio, src }) => {
+const Profile = ({ maxwh, minht, onClick, username, bio, src }) => {
 
     return <Container onClick={onClick}>
 
-        <Img src={src} />
+        <Img maxwh={maxwh} minht={minht} src={src} />
         <Name>{username}</Name>
         <Bio>{bio}</Bio>
 

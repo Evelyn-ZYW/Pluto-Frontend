@@ -54,15 +54,17 @@ const ProfilePage = () => {
     const history = useHistory();
 
     const [ui, setUI] = useState();
+    const [uip, setUIP] = useState();
     const [un, setUn] = useState();
     const [profile, setProfile] = useState([]);
     const [pui, setPUI] = useState();
+    const [avatar, setAvatar] = useState();
 
     const [posts, setPosts] = useState([]);
 
     const GetPosts = async () => {
         const resp = await axios.get("http://localhost:8080/api/getAllPosts");
-        console.log(resp.data.posts);
+        console.log(resp.data.posts, "posts");
 
         setPosts([
             ...resp.data.posts
@@ -75,10 +77,14 @@ const ProfilePage = () => {
         history.push('/EditProfile')
     }
 
-    // const GetProfile = async () => {
-    //     const resp = await axios.post("http://localhost:8080/api/getOneProfile", {id: ui});
-
-
+    const GetProfile = async () => {
+        const resp = await axios.get("http://localhost:8080/api/users/profile");
+            console.log(resp.data.user, "users");
+            setProfile([
+                ...resp.data.user
+            ]);
+            console.log(profile, "profile")
+    }
 
     //         // setProfile([
     //         //     ...resp.data.user
@@ -100,19 +106,27 @@ const ProfilePage = () => {
             return JSON.parse(window.atob(base64));
         }
         const data = parseJwt(token);
+        console.log("data", data)
         const userId = data.userId
         const username = data.username
         // const profileImage = data.avatarUrl
         console.log("this is the userId", userId)
         setUI(userId)
         setUn(username)
+
+        // const resp = await axios.post("http://localhost:8080/api/users/profile", {id: ui});
+
+            // setProfile([
+            //     ...resp.data.user
+            // ]);
+            // console.log(resp.data.user, "users")
         // setPUI(profileImage)
     }
 
     useEffect(() => {
         GetPosts();
         CheckToken();
-        // GetProfile();
+        GetProfile();
     }, [])
     return <Container>
         <Top>
@@ -120,7 +134,8 @@ const ProfilePage = () => {
             <ImgButton src={More} maxwh="27px" maxht="27px" onClick={EditProfile} />
         </Top>
         <Middle>
-            <Profile username={un} src={pui} />
+            {/* <Profile username={un} src={pui} /> */}
+            {profile.map((o, i) => <Profile maxwh="160px" minht="160px" username={o.name} src={o.avatar_url} bio={o.bio} ></Profile>)}
         </Middle>
         <Bottom className="bottom">
             {posts.map((o, i) => <div><img src={o.image} /></div>)}

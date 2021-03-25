@@ -74,8 +74,13 @@ const Bottom = styled.div`
 `;
 
 const Icon = styled.img`
-  max-wdith: 50px;
+  max-width: 50px;
   max-height: 50px;
+`;
+const IconT = styled.img`
+  max-width: 50px;
+  max-height: 50px;
+  margin-top: 5px;
 `;
 const Image = styled.img`
   // max-width: 414px;
@@ -140,10 +145,10 @@ const Image = styled.img`
 //     </Container>
 //   );
 // };
-const Post = ({src,  un, caption, number, onClick }) => {
+const Post = ({src,  un, caption, number, onClick, treatsrc }) => {
 
   return (
-    <Container>
+    <Container  onClick={onClick}>
       <Top>
         <div>
           <Icon src={Ava1} />
@@ -154,7 +159,6 @@ const Post = ({src,  un, caption, number, onClick }) => {
             src={More}
             maxht="35px"
             minht="35px"
-            onClick={onClick}
           />
         </div>
       </Top>
@@ -163,8 +167,8 @@ const Post = ({src,  un, caption, number, onClick }) => {
       </Middle>
       <Bottom>
         <div>
-          <Icon src={Treat} />
-          <span style={{ paddingLeft: "10px" }}>#{number}</span>
+          <IconT src={treatsrc}></IconT>
+          <span style={{ paddingLeft: "10px" }}>{number}</span>
         </div>
         <div>
           <span>{un}</span>
@@ -179,6 +183,9 @@ Post.defaultProps = {
   un: "username",
   number: "",
   caption: ".............",
+  treatsrc: Treat,
+  src: Cute
+
 };
 
 export default Post;
