@@ -1,12 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ImgButton from '../../comps/ImgButton';
 import Profile from '../../comps/Profile';
 import Navigation from '../../comps/Navigation';
 import More from '../../assets/more.png';
 import Avatar from '../../assets/a1.png';
-import Cute1 from '../../assets/pomer.jpg';
-import Cute2 from '../../assets/cute.jpeg';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -60,22 +58,33 @@ const ProfilePage = () => {
     const [profile, setProfile] = useState([]);
     const [pui, setPUI] = useState();
 
+    const [posts, setPosts] = useState([]);
+
+    const GetPosts = async () => {
+        const resp = await axios.get("http://localhost:8080/api/getAllPosts");
+        console.log(resp.data.posts);
+
+        setPosts([
+            ...resp.data.posts
+        ]);
+        // setUn({ ...resp.data[0] });
+        // console.log(posts, "posts")
+    }
+
     const EditProfile = () => {
         history.push('/EditProfile')
     }
 
-    const GetProfile = async () => {
-        const resp = await axios.post("http://localhost:8080/api/getOneProfile", {id: ui});
-        console.log(resp.data);
+    // const GetProfile = async () => {
+    //     const resp = await axios.post("http://localhost:8080/api/getOneProfile", {id: ui});
 
 
-            // setProfile([
-            //     ...resp.data.user
-            // ]);
-            // console.log(resp.data., "users")
-        }  
 
-
+    //         // setProfile([
+    //         //     ...resp.data.user
+    //         // ]);
+    //         // console.log(resp.data.user, "users")
+    //     }  
 
 
     const CheckToken = async () => {
@@ -93,14 +102,17 @@ const ProfilePage = () => {
         const data = parseJwt(token);
         const userId = data.userId
         const username = data.username
+        // const profileImage = data.avatarUrl
         console.log("this is the userId", userId)
         setUI(userId)
         setUn(username)
+        // setPUI(profileImage)
     }
 
     useEffect(() => {
+        GetPosts();
         CheckToken();
-        GetProfile();
+        // GetProfile();
     }, [])
     return <Container>
         <Top>
@@ -108,18 +120,10 @@ const ProfilePage = () => {
             <ImgButton src={More} maxwh="27px" maxht="27px" onClick={EditProfile} />
         </Top>
         <Middle>
-            <Profile username={un} src={Avatar} />
+            <Profile username={un} src={pui} />
         </Middle>
         <Bottom className="bottom">
-            <div><img src={Cute1} /></div>
-            <div><img src={Cute2} /></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            {posts.map((o, i) => <div><img src={o.image} /></div>)}
         </Bottom>
         <Navigation minwidth="400px" />
     </Container>
