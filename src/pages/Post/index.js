@@ -5,8 +5,11 @@ import Post from '../../comps/Post';
 import ThreeMenu from '../../comps/ThreeMenu';
 import DeletePopup from '../../comps/DeletePopup';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios'
 import treated from 'assets/treated.png';
+import Ava1 from "assets/a1.png";
+import Ava2 from "assets/a2.png";
+import Ava3 from "assets/a3.jpeg";
+
 
 const Container = styled.div`
 border: 1px solid black;
@@ -77,19 +80,26 @@ const PostPage = () => {
         }
     }
 
-    const [posts, setPosts] = useState([]);
-
-    const GetPosts = async () => {
-        const resp = await axios.get("https://pluto-db.herokuapp.com/api/getAllPosts");
-        // const resp = await axios.get("https://localhost:8080/api/getAllPosts");
-        console.log(resp.data.posts);
-
-        setPosts([
-            ...resp.data.posts
-        ]);
-        console.log(posts, "posts")
-    }
-
+    const [posts, setPosts] = useState([
+        {
+            username: "Evelyn",
+            ava: Ava1,
+            caption: "Isn't it the cutest animal you ever saw?",
+            image: null
+        },
+        {
+            username: "Frank",
+            ava: Ava2,
+            caption: "Isn't it the cutest animal you ever saw?",
+            image: null
+        },
+        {
+            username: "Mr. Noname",
+            ava: Ava3,
+            caption: "Isn't it the cutest animal you ever saw?",
+            image: null
+        }
+    ]);
     const [num, setNum] = useState();
     const [selected, setSelected] = useState();
     const [treatsource, setTreatSource] = useState()
@@ -100,16 +110,13 @@ const PostPage = () => {
         console.log("hi")
     }
 
-    useEffect(() => {
-        //when the page loads, do the following
-        GetPosts();
-    }, [])
 
     return <Container>
 
         {posts.map((o, i) => <Post
             src={o.image}
             un={o.username}
+            ava={o.ava}
             caption={o.caption}
             treatsrc={treatsource}
             onClick={LikePicture}

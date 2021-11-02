@@ -76,6 +76,7 @@ const Bottom = styled.div`
 const Icon = styled.img`
   max-width: 50px;
   max-height: 50px;
+  border: 2px solid #DCD8F1;
 `;
 const IconT = styled.img`
   max-width: 50px;
@@ -145,13 +146,13 @@ const Image = styled.img`
 //     </Container>
 //   );
 // };
-const Post = ({src,  un, caption, number, onClick, ClickMore, treatsrc }) => {
+const Post = ({src,  ava, un, caption, number, onClick, ClickMore, treatsrc }) => {
 
   return (
     <Container  onClick={onClick}>
       <Top>
         <div>
-          <Icon src={Ava1} />
+          <Icon src={ava} />
           <span style={{ paddingLeft: "10px" }}>{un}</span>
         </div>
         <div>

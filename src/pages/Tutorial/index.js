@@ -43,11 +43,11 @@ const TutorialPage = () => {
 
     const clickNext = () => {
         if (num === 1){
-         setText("Click this button to upload a post. Here you will choose a picture and add add a caption.");
-        setimgInner(New);
-        setimgBack(ArrowBack);
-        setFlex("space-between")
-        setNum(2)   
+            setText("Click this button to upload a post. Here you will choose a picture and add add a caption.");
+            setimgInner(New);
+            setimgBack(ArrowBack);
+            setFlex("space-between")
+            setNum(2)   
         }
         if (num === 2){
             setText("Click this button to view your profile. Here you will find all your posts. You can also change your settings here.");
@@ -58,7 +58,7 @@ const TutorialPage = () => {
             setNum(3) 
         }
         if (num === 3){
-            history.push('/Login')
+            history.push('/AllPosts')
         }
     }
 
@@ -77,7 +77,7 @@ const TutorialPage = () => {
             setimgBack(ArrowBack);
             setimgNext(ArrowRight);
             setFlex("space-between")
-            setNum(2) 
+            setNum(2)
         }
     }
 
@@ -88,7 +88,7 @@ const TutorialPage = () => {
 
     
     return <Container>
-        <Tutorial onClickExit={clickExit} exitsrc={Close} maxheighttext="159px" minheighttext="159px" onClickForward={clickNext} onClickBack={clickBack} margintopcont="100px" minwidthbuttons="300px" maxwidthbuttons="300px" margintopbuttons="35px" justifycontent={flex} maxwidthtext="240px" marginbottomimage="50px" margintopimage="120px" minwidthimage="138px" maxwidthimage="139px" bgcolor="#DCD8F1" radius="35px" maxheight="557px"  maxwidth="300px" fontWeight="300" fontSize="22px" maxwidthimage="20px" text={textInner} imgsrc={imgInner} backsrc={imgBack} nextSrc={imgNext} />
+        <Tutorial onClickExit={clickExit} exitsrc={Close} maxheighttext="159px" minheighttext="159px" onClickForward={clickNext} onClickBack={clickBack} margintopcont="100px" minwidthbuttons="300px" maxwidthbuttons="300px" margintopbuttons="35px" justifycontent={flex} maxwidthtext="240px" marginbottomimage="50px" margintopimage="120px" minwidthimage="138px" maxwidthimage="139px" bgcolor="#DCD8F1" radius="35px" maxheight="557px"  maxwidth="300px" fontWeight="300" fontSize="22px" text={textInner} imgsrc={imgInner} backsrc={imgBack} nextSrc={imgNext} />
         <Navigation maxheight="60px" minwidth="400px"/>
     </Container>
 }

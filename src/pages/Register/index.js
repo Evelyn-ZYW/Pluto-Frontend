@@ -5,7 +5,6 @@ import Button from '../../comps/Button';
 import InputElements from '../../comps/Input';
 import ArrowLeft from '../../assets/left_arrow.png';
 import PopUp from '../../comps/Popup';
-import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 
 const Container = styled.div`
@@ -103,41 +102,9 @@ const RegisterPage = () => {
     const [goodpass, setGoodPass] = useState("");
     const [goodemail, setGoodEmail] = useState("");
 
-    const clickNext = async() => {
-        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        console.log(error)
-        console.log("pass", goodpass);
-        console.log("email", goodemail)
-
-
-        if(pass === passconfirm && pass !== "null" && email.match(mailformat)){
-    
-                const resp = await axios.post("https://pluto-db.herokuapp.com/api/user_register", {name: name, username:un, email: email, password: pass});
-                if(resp.data !== error){
-                    setOpen(!open);
-                    setClose(!close);
-                } else {
-                    setError("There was a problem registering, please try again.")
-                }
-            
-        }
-
-        // if(email.match(mailformat)){
-        //     setGoodEmail("emailgood")
-        // }
-
-        if(pass !== passconfirm){
-            setError("Passwords do not match")
-        } if (!email.match(mailformat)){
-            setError("email format is invalid")
-        } 
-        // if (goodpass === "passgood" && goodemail === "emailgood") {
-        //     // const resp = await axios.post("endpoint api", {name: name, un:un, email: email, password: pass});
-        //     // if(resp.data !== "error/whatever our message is"){
-        //         setOpen(!open);
-        //         setClose(!close);
-        //     // }
-        // }
+    const clickNext = () => {
+        setOpen(!open);
+        setClose(!close); 
     }
 
     const clickBack = () => {
@@ -147,9 +114,6 @@ const RegisterPage = () => {
     const clickTutorial = () => {
         history.push('/Tutorial')
     }
-
-
-
 
     return <Container>
         <BackCont>
@@ -165,7 +129,7 @@ const RegisterPage = () => {
             <InputElements onChange={(e)=>setPass(e.target.value)} fontSize="15px" minwidth="345px" minheight="50px"  placeholder="password" type="password"/>
             <InputElements onChange={(e)=>setPassconfirm(e.target.value)} fontSize="15px" minwidth="345px" minheight="50px"  placeholder="confirm password" type="password" />
             <div id="error">
-                            {error}
+                {error}
             </div>
         </InputCont> 
         <ButtonCont onClick={() => {
