@@ -5,7 +5,6 @@ import Button from '../../comps/Button';
 import InputElements from '../../comps/Input';
 import ArrowLeft from '../../assets/left_arrow.png';
 import {useHistory} from 'react-router-dom';
-import axios from 'axios'
 
 const Container = styled.div`
 border: 1px solid black;
@@ -23,6 +22,14 @@ align-items: center;
     margin-left: 50px;
     margin-bottom: 30px;
     margin-top: 94px;
+}
+#error {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 21px;
+    color: red;
+    margin-left: 50px;
+    width: 100%;
 }
 `;
 
@@ -69,21 +76,28 @@ const LoginPage = () => {
         }
 
 
-        if(pass !== null && user !== null){
-                const resp = await axios.post("https://pluto-db.herokuapp.com/api/users/login", { username:user, password: pass});
-                if(resp.data !== error){
-                    history.push('/AllPosts')
+        // if(pass !== null && user !== null){
+        //         const resp = await axios.post("https://pluto-db.herokuapp.com/api/users/login", { username:user, password: pass});
+        //         if(resp.data !== error){
+        //             history.push('/AllPosts')
     
-                    const token = resp.data.token;
-                    console.log(token)
-                    sessionStorage.setItem("token", token);
-                    axios.defaults.headers.common['Authorization'] = token;
-                } else {
-                    setError("There was a problem logging in, please try again.")
-                }
+        //             const token = resp.data.token;
+        //             console.log(token)
+        //             sessionStorage.setItem("token", token);
+        //             axios.defaults.headers.common['Authorization'] = token;
+        //         } else {
+        //             setError("There was a problem logging in, please try again.")
+        //         }
+            
+        // }
+            if(pass !== null && user !== null){
+                history.push('/AllPosts')
+                localStorage.setItem("user", user);
+            } else {
+                setError("There was a problem logging in, please try again.")
+            }
             
         }
-    }
     const clickBack = () => {
         history.push('/')
     }
@@ -101,6 +115,9 @@ const LoginPage = () => {
             <InputElements onChange={(e)=>setUsername(e.target.value)}  fontSize="15px" minwidth="345px" minheight="50px"  placeholder="username" />
             <InputElements onChange={(e)=>setPassword(e.target.value)}  fontSize="15px" minwidth="345px" minheight="50px"  placeholder="password" type="password"/>
         </InputCont> 
+        <div id="error">
+                            {error}
+            </div>
         <ButtonCont>
              <Button onClick={clickLogin} text="NEXT" maxheight="50px" minwidth="345px" bgcolor="#DCD8F1" radius="40px" border="none" />
         </ButtonCont>
